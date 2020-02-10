@@ -80,3 +80,7 @@ The minimum viable product for this application will be capable of doing the fol
 - Link products to categories to which they belong
 - Allow buyers to have the capability to add products to their carts
 - Store a complete record of each buyer
+
+#### Stretch Goals
+- Have a user own several addresses and able to make a choice of which to ship to
+- process payment information
