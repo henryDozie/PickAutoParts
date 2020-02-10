@@ -65,6 +65,13 @@ This will be implemented using REACT and CSS for styling. From the frontend, the
 
 ![ERD](./images/ERD.png)
 
+The databases structure for PAP consists of 5 table for handling several features;
+1) Customers table
+2) Order table
+3) Autoparts table
+4) Brand table
+5) Review table
+
 #### MVP
 
 The minimum viable product for this application will be capable of doing the following:
