@@ -10,47 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_11_022143) do
+ActiveRecord::Schema.define(version: 2020_02_11_175809) do
 
   create_table "autoparts", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "img_url"
     t.integer "order_id", null: false
-    t.integer "brand_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["brand_id"], name: "index_autoparts_on_brand_id"
     t.index ["order_id"], name: "index_autoparts_on_order_id"
   end
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
     t.string "img_url"
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_brands_on_user_id"
+    t.string "created_by"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.string "shipping_Address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "created_by"
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string "review"
     t.integer "rating"
-    t.integer "user_id", null: false
     t.integer "autopart_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "created_by"
     t.index ["autopart_id"], name: "index_reviews_on_autopart_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,10 +56,6 @@ ActiveRecord::Schema.define(version: 2020_02_11_022143) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "autoparts", "brands"
   add_foreign_key "autoparts", "orders"
-  add_foreign_key "brands", "users"
-  add_foreign_key "orders", "users"
   add_foreign_key "reviews", "autoparts"
-  add_foreign_key "reviews", "users"
 end
