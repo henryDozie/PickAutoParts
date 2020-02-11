@@ -3,14 +3,14 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
-    @orders = current_user.all
+    @orders = current_user.orders
     json_response(@orders)
   end
 
   # POST /orders
   def create
     @order = current_user.orders.create!(order_params)
-    json_response(@order, :created)
+    json_response(status: 'SUCCESS', message: 'created the order')
   end
 
   # GET /orders/:id
@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
 
   def order_params
     # whitelist params
-    params.permit(:shipping_Address)
+    params.permit(:shipping_Address, :created_by)
   end
 
   def set_order
