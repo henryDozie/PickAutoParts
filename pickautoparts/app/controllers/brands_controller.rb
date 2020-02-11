@@ -1,6 +1,6 @@
 class BrandsController < ApplicationController
 
-  # before_action :set_brand, only: [:show, :update, :destroy]
+  before_action :set_brand, only: [:show, :update, :destroy]
 
   # GET /brands
   def index
@@ -13,7 +13,7 @@ class BrandsController < ApplicationController
   # POST /brands
   def create
     @brand = current_user.brands.create!(brand_params)
-    json_response(@brand, :id)
+    json_response(status: 'SUCCESS', message: 'created the brand')
   end
 
   # GET /brands/:id
@@ -38,7 +38,7 @@ class BrandsController < ApplicationController
 
   def brand_params
     # whitelist params
-    params.permit(:autopart_id)
+    params.permit(:name, :img_url, :created_by)
   end
 
   def set_brand
