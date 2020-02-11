@@ -1,48 +1,51 @@
-class ReviewsController < ApplicationController
-  before_action :set_autoparts
+class AutopartsController < ApplicationController
+  before_action :set_autopart
+  # before_action :set_brand
   before_action :set_autopart_review, only: [:show, :update, :destroy]
 
-  # GET /autoparts/:autopart_id/reviews
+  # GET /orders/:order_id/autoparts
   def index
-    json_response(@autopart.reviews)
+    # if(set_order)
+    json_response(@autopart.review)
+    # else
+    #   json_response(@brand.autoparts)
+    # end
   end
 
-  # GET /autoparts/:autopart_id/reviews/:id
+  # GET /orders/:order_id/autoparts/:id
   def show
     json_response(@review)
   end
 
-  # POST /autoparts/:autopart_id/reviews
+  # POST /orders/:order_id/autoparts
   def create
     @autopart.reviews.create!(review_params)
-    # json_response(@autopart, :created)
-    json_response(status: "SUCCESS", message: 'review created successfully.')
-
+    json_response(status: "SUCCESS", message: 'autopart created successfully.')
   end
 
-  # PUT /autoparts/:autopart_id/reviews/:id
+  # PUT /orders/:order_id/autoparts/:id
   def update
     @review.update(review_params)
-    json_response(status: 'SUCCESS', message: 'review updated successfully.')
+    json_response(status: 'SUCCESS', message: 'autopart updated successfully.')
   end
 
-  # DELETE /autoparts/:autopart_id/reviews/:id
+  # DELETE /orders/:order_id/autoparts/:id
   def destroy
     @review.destroy
-    json_response(status: 'SUCCESS', message: 'review deleted successfully.')
+    json_response(status: 'SUCCESS', message: 'autopart deleted successfully.')
   end
 
   private
 
-  def review_params
-    params.permit(:name, :done)
+  def autopart_params
+    params.permit(:review, :rating)
   end
 
   def set_autopart
-    @autopart = autopart.find(params[:autopart_id])
+    @autopart = Autopart.find(params[:autopart_id])
   end
 
   def set_autopart_review
-    @review = @autopart.reviews.find_by!(id: params[:id]) if @autopart
+    @review = @autopart.reviews.find_by!(id: params[:id]) if @order
   end
 end
