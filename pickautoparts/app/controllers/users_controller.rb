@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     auth_token = AuthenticateUser.new(user.email, user.password).call
     response = {message: Message.account_created, auth_token: auth_token}
     json_response(response, :created)
+    # UserMailer.welcome_email(user).deliver
   end
 
   private
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
         :name,
         :email,
         :password,
+        :address,
         :password_confirmation
     )
   end
