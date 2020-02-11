@@ -1,0 +1,1409 @@
+  [1m[35m (35.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200210215720)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "address" varchar, "password_digest" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200210215720"]]
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateOrders (20200210215729)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "orders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "shipping_Address" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_f868b47f6a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_orders_on_user_id" ON "orders" ("user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200210215729"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBrands (20200210215735)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "brands" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "img_url" varchar, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_a4567c2efa"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_brands_on_user_id" ON "brands" ("user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200210215735"]]
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAutoparts (20200210215754)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "autoparts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "img_url" varchar, "order_id" integer NOT NULL, "brand_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_9f6e4a4ade"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+, CONSTRAINT "fk_rails_5816b7fe63"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_autoparts_on_order_id" ON "autoparts" ("order_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_autoparts_on_brand_id" ON "autoparts" ("brand_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200210215754"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateReviews (20200210215953)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "review" varchar, "rating" integer, "user_id" integer NOT NULL, "autopart_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_74a66bd6c5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_9bad11e0d6"
+FOREIGN KEY ("autopart_id")
+  REFERENCES "autoparts" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_reviews_on_autopart_id" ON "reviews" ("autopart_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200210215953"]]
+  [1m[35m (18.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-02-10 22:13:00.029280"], ["updated_at", "2020-02-10 22:13:00.029280"]]
+  [1m[35m (24.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/orders" for ::1 at 2020-02-10 17:14:11 -0500
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 113ms (ActiveRecord: 0.5ms | Allocations: 36825)
+
+
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `json_response' for #<OrdersController:0x00007fab0714c8f0>):
+  
+app/controllers/orders_controller.rb:8:in `index'
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/orders" for ::1 at 2020-02-10 17:15:45 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+  [1m[36mOrder Load (0.7ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 106ms (ActiveRecord: 0.6ms | Allocations: 36825)
+
+
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `json_response' for #<OrdersController:0x00007fd13871f000>):
+  
+app/controllers/orders_controller.rb:8:in `index'
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/orders" for ::1 at 2020-02-10 17:16:13 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 106ms (ActiveRecord: 0.4ms | Allocations: 36825)
+
+
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `json_response' for #<OrdersController:0x00007fdd35b926b0>):
+  
+app/controllers/orders_controller.rb:8:in `index'
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/orders" for ::1 at 2020-02-10 17:16:50 -0500
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 107ms (ActiveRecord: 0.7ms | Allocations: 36825)
+
+
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `json_response' for #<OrdersController:0x00007fe3cfa69c20>):
+  
+app/controllers/orders_controller.rb:8:in `index'
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/orders" for ::1 at 2020-02-10 17:19:31 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 125ms (ActiveRecord: 0.7ms | Allocations: 36825)
+
+
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `json_response' for #<OrdersController:0x00007f8a33eba888>):
+  
+app/controllers/orders_controller.rb:8:in `index'
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/orders" for ::1 at 2020-02-10 17:19:59 -0500
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 130ms (ActiveRecord: 0.7ms | Allocations: 36908)
+
+
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `json_response' for #<OrdersController:0x00007fa175ba0db0>):
+  
+app/controllers/orders_controller.rb:8:in `index'
+  [1m[36mCACHE Order Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/orders" for ::1 at 2020-02-10 17:21:15 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 0.5ms | Allocations: 1736)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/orders" for ::1 at 2020-02-10 17:22:25 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.5ms | Allocations: 1562)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started GET "/orders" for ::1 at 2020-02-10 17:26:16 -0500
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.4ms | Allocations: 1562)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started GET "/orders" for ::1 at 2020-02-10 17:27:16 -0500
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+Completed 500 Internal Server Error in 60ms (ActiveRecord: 0.6ms | Allocations: 1687)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (13.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/orders" for ::1 at 2020-02-10 17:29:31 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.7ms | Allocations: 1563)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started GET "/orders" for ::1 at 2020-02-10 17:29:48 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "order"=>{}}
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 1.0ms | Allocations: 1563)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started POST "/login" for ::1 at 2020-02-10 17:32:18 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/login"):
+  
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/signup" for ::1 at 2020-02-10 17:33:10 -0500
+  
+ActionController::RoutingError (uninitialized constant UserssController
+Did you mean?  UsersController):
+  
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `const_get'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `block in constantize'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.2.1) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:45:in `controller'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.1) lib/rack/etag.rb:27:in `call'
+rack (2.2.1) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.1) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.1) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/signup" for ::1 at 2020-02-10 17:34:44 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.9ms | Allocations: 5274)
+
+
+  
+NoMethodError (undefined method `empty?' for 1234:Integer):
+  
+app/controllers/users_controller.rb:9:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 17:34:56 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (6.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "httscc.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (35.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "RICO"], ["email", "httscc.com"], ["password_digest", "$2a$12$QDFnYAXqcWgtIKC.rxMmRuo2EwayGEvQiAnzbBWIeXRPwlo3xBjxm"], ["created_at", "2020-02-10 22:34:56.621051"], ["updated_at", "2020-02-10 22:34:56.621051"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "httscc.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 767ms (ActiveRecord: 43.0ms | Allocations: 7018)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 17:36:08 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"RICO", "email"=>"httscc.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "httscc.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+Completed 422 Unprocessable Entity in 474ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 11402)
+
+
+Started POST "/signup" for ::1 at 2020-02-10 17:36:49 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"RICO", "email"=>"somethimgs.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"RICO", "email"=>"somethimgs.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "somethimgs.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (16.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "RICO"], ["email", "somethimgs.com"], ["password_digest", "$2a$12$mgSzcFFNYUXyQrKtxjIPrePSgvQuFbNg9YY9K5eU/iZurJLYaJe3q"], ["created_at", "2020-02-10 22:36:50.434765"], ["updated_at", "2020-02-10 22:36:50.434765"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "somethimgs.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 700ms (ActiveRecord: 17.8ms | Allocations: 7165)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/users_controller.rb:11:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 17:40:33 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"RICO", "email"=>"12345.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"RICO", "email"=>"12345.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "12345.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "RICO"], ["email", "12345.com"], ["password_digest", "$2a$12$DsuU1ZthpguI969Yua5Zju3OazY4JFzX/sqhZY56kxfPsNGSNbSkS"], ["created_at", "2020-02-10 22:40:34.304983"], ["updated_at", "2020-02-10 22:40:34.304983"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (19.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "12345.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 711ms (ActiveRecord: 20.8ms | Allocations: 12802)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/users_controller.rb:11:in `create'
+Started GET "/auth/login" for ::1 at 2020-02-10 17:43:20 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/auth/login"):
+  
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/login" for ::1 at 2020-02-10 17:43:32 -0500
+  
+ActionController::RoutingError (uninitialized constant AuthenticationController
+Did you mean?  AutopartsController):
+  
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `const_get'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `block in constantize'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.2.1) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:45:in `controller'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.1) lib/rack/etag.rb:27:in `call'
+rack (2.2.1) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.1) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.1) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/login" for ::1 at 2020-02-10 17:51:02 -0500
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant AuthenticationController
+Did you mean?  AutopartsController):
+  
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `const_get'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `block in constantize'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.2.1) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:45:in `controller'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.1) lib/rack/etag.rb:27:in `call'
+rack (2.2.1) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.1) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.1) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/signup" for ::1 at 2020-02-10 17:51:22 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/auth/signup"):
+  
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/signup" for ::1 at 2020-02-10 17:51:33 -0500
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"123.com", "password"=>"[FILTERED]", "user"=>{"email"=>"123.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (5.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "123.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+Completed 422 Unprocessable Entity in 410ms (Views: 0.4ms | ActiveRecord: 7.1ms | Allocations: 9241)
+
+
+Started POST "/signup" for ::1 at 2020-02-10 17:51:49 -0500
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"name": "james"
+	"email": "123.com",
+	"password": "1234"
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{
+	"name": "james"
+	"email": "123.com",
+	"password": "1234"
+}'):
+  
+actionpack (6.0.2.1) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (6.0.2.1) lib/action_dispatch/http/parameters.rb:111:in `parse_formatted_parameters'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:381:in `block in POST'
+rack (2.2.1) lib/rack/request.rb:69:in `fetch'
+rack (2.2.1) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:380:in `POST'
+actionpack (6.0.2.1) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.0.2.1) lib/action_controller/metal/params_wrapper.rb:279:in `_wrapper_enabled?'
+actionpack (6.0.2.1) lib/action_controller/metal/params_wrapper.rb:244:in `process_action'
+activerecord (6.0.2.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.0.2.1) lib/abstract_controller/base.rb:136:in `process'
+actionpack (6.0.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.1) lib/rack/etag.rb:27:in `call'
+rack (2.2.1) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.1) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.1) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"name": "james"
+	"email": "123.com",
+	"password": "1234"
+}
+Started POST "/signup" for ::1 at 2020-02-10 17:51:58 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"james", "email"=>"123.com", "password"=>"[FILTERED]", "user"=>{"name"=>"james", "email"=>"123.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "123.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (19.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "james"], ["email", "123.com"], ["password_digest", "$2a$12$.lzh1nhq6lGqj9TQuLdhd.6X4XWf6eBLp0UClKrORB7zM5aCrm.ii"], ["created_at", "2020-02-10 22:51:58.942737"], ["updated_at", "2020-02-10 22:51:58.942737"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (12.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "123.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 743ms (ActiveRecord: 32.7ms | Allocations: 5650)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/users_controller.rb:11:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 17:57:51 -0500
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant UsersController):
+  
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `const_get'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `block in constantize'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.2.1) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:45:in `controller'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.1) lib/rack/etag.rb:27:in `call'
+rack (2.2.1) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.1) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.1) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/signup" for ::1 at 2020-02-10 18:00:11 -0500
+  
+ActionController::RoutingError (uninitialized constant UsersController):
+  
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `const_get'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `block in constantize'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.2.1) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:45:in `controller'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.1) lib/rack/etag.rb:27:in `call'
+rack (2.2.1) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.1) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.1) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/login" for ::1 at 2020-02-10 18:00:49 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"name"=>"james", "email"=>"123.com", "password"=>"[FILTERED]", "authentication"=>{"name"=>"james", "email"=>"123.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 1447)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/controllers/users_controller.rb:32:in `decoded_auth_token'
+app/controllers/users_controller.rb:20:in `user'
+app/controllers/users_controller.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started POST "/auth/login" for ::1 at 2020-02-10 18:01:26 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"123.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"123.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 1415)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/controllers/users_controller.rb:32:in `decoded_auth_token'
+app/controllers/users_controller.rb:20:in `user'
+app/controllers/users_controller.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started POST "/auth/login" for ::1 at 2020-02-10 18:02:45 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"123.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"123.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.0ms | Allocations: 1553)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started POST "/auth/login" for ::1 at 2020-02-10 18:06:09 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"123.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"123.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 1415)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started POST "/signup" for ::1 at 2020-02-10 18:06:32 -0500
+  
+ActionController::RoutingError (uninitialized constant UsersController):
+  
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `const_get'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:282:in `block in constantize'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.2.1) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.2.1) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.2.1) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:45:in `controller'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.1) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.1) lib/rack/etag.rb:27:in `call'
+rack (2.2.1) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.1) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.1) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/signup" for ::1 at 2020-02-10 18:09:01 -0500
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"john", "email"=>"12345.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"john", "email"=>"12345.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.0ms | Allocations: 5272)
+
+
+  
+NoMethodError (undefined method `empty?' for 1234:Integer):
+  
+app/controllers/users_controller.rb:9:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 18:09:17 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"john", "email"=>"12345.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"john", "email"=>"12345.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "12345.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+Completed 422 Unprocessable Entity in 384ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 4970)
+
+
+Started POST "/signup" for ::1 at 2020-02-10 18:09:26 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"john", "email"=>"123456.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"john", "email"=>"123456.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "123456.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (29.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "john"], ["email", "123456.com"], ["password_digest", "$2a$12$I6iyO.jS3rE/SKuuNh0iWuj1WVSVf/GVNB/qroL8U7vZDylPBJJeC"], ["created_at", "2020-02-10 23:09:27.018783"], ["updated_at", "2020-02-10 23:09:27.018783"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "123456.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 711ms (ActiveRecord: 32.0ms | Allocations: 5657)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 18:10:36 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"john", "email"=>"123456.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"john", "email"=>"123456.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "123456.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+Completed 422 Unprocessable Entity in 329ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 9480)
+
+
+Started POST "/signup" for ::1 at 2020-02-10 18:10:42 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"john", "email"=>"1234567.com", "address"=>"123 Main St.", "password"=>"[FILTERED]", "user"=>{"name"=>"john", "email"=>"1234567.com", "address"=>"123 Main St."}}
+[31mUnpermitted parameters: :address, :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "1234567.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "john"], ["email", "1234567.com"], ["password_digest", "$2a$12$RSE/RfddNFBLvNGtd/wEvuFv5/qicEZ.z8yHksTAqWgNBpFTQAUXS"], ["created_at", "2020-02-10 23:10:43.291962"], ["updated_at", "2020-02-10 23:10:43.291962"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+Completed 500 Internal Server Error in 356ms (ActiveRecord: 1.6ms | Allocations: 4311)
+
+
+  
+NameError (undefined local variable or method `name' for #<AuthenticateUser:0x00007fca4d781210>):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/auth/login" for ::1 at 2020-02-10 18:12:23 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"1234567.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"1234567.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.0ms | Allocations: 1525)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started POST "/auth/login" for ::1 at 2020-02-10 18:13:16 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"1234567.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"1234567.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 112ms (ActiveRecord: 0.0ms | Allocations: 35420)
+
+
+  
+NameError (undefined local variable or method `name' for #<AuthorizeApiRequest:0x00007fca4f804af0>):
+  
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started POST "/auth/login" for ::1 at 2020-02-10 18:17:34 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"1234567.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"1234567.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "1234567.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 404ms (ActiveRecord: 1.0ms | Allocations: 9049)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/authentication_controller.rb:7:in `authenticate'
+Started POST "/auth/login" for ::1 at 2020-02-10 18:18:13 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"1234567.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"1234567.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "1234567.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 366ms (ActiveRecord: 1.2ms | Allocations: 8969)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/authentication_controller.rb:7:in `authenticate'
+Started POST "/signup" for ::1 at 2020-02-10 18:18:33 -0500
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"234567.com", "password"=>"[FILTERED]", "user"=>{"email"=>"234567.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "234567.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+Completed 422 Unprocessable Entity in 363ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 4682)
+
+
+Started POST "/signup" for ::1 at 2020-02-10 18:18:50 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Jarule", "email"=>"234567.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Jarule", "email"=>"234567.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "234567.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jarule"], ["email", "234567.com"], ["password_digest", "$2a$12$6AHWjStWUI8N.BRn5n4mq.gevukZbqvjCk3wluAMsKgLTmHYQr9k6"], ["created_at", "2020-02-10 23:18:50.601833"], ["updated_at", "2020-02-10 23:18:50.601833"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (19.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "234567.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 668ms (ActiveRecord: 20.6ms | Allocations: 5417)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 18:27:29 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Jarule", "email"=>"234567.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Jarule", "email"=>"234567.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "234567.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+Completed 422 Unprocessable Entity in 385ms (Views: 0.4ms | ActiveRecord: 1.5ms | Allocations: 9256)
+
+
+Started POST "/signup" for ::1 at 2020-02-10 18:27:40 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Jarule", "email"=>"2345687.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Jarule", "email"=>"2345687.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "2345687.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (21.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jarule"], ["email", "2345687.com"], ["password_digest", "$2a$12$l5c5Hwr.nkyg5QGbqXg4fe48dueEM.JxKnv7U1KppSU1TNG8.2Ype"], ["created_at", "2020-02-10 23:27:41.176120"], ["updated_at", "2020-02-10 23:27:41.176120"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "2345687.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 721ms (ActiveRecord: 23.1ms | Allocations: 5656)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/users_controller.rb:10:in `create'
+Started GET "/orders" for ::1 at 2020-02-10 18:35:12 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"Jarule", "email"=>"2345687.com", "password"=>"[FILTERED]", "order"=>{}}
+Completed 500 Internal Server Error in 86ms (ActiveRecord: 0.5ms | Allocations: 1689)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started GET "/orders" for ::1 at 2020-02-10 18:38:29 -0500
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"Jarule", "email"=>"2345687.com", "password"=>"[FILTERED]", "order"=>{}}
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.5ms | Allocations: 1564)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started GET "/orders" for ::1 at 2020-02-10 18:50:24 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by OrdersController#index as */*
+  Parameters: {"name"=>"Jarule", "email"=>"2345687.com", "password"=>"[FILTERED]", "order"=>{}}
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms | Allocations: 1526)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started POST "/signup" for ::1 at 2020-02-10 18:50:55 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Jarule", "email"=>"2045687.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Jarule", "email"=>"2045687.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "2045687.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jarule"], ["email", "2045687.com"], ["password_digest", "$2a$12$J4ZsohiSQdgfAAEnd9Ugy.r7pIYYfIgW08ECfTZy9Cz0l.no5tQsG"], ["created_at", "2020-02-10 23:50:55.511857"], ["updated_at", "2020-02-10 23:50:55.511857"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "2045687.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 717ms (ActiveRecord: 6.2ms | Allocations: 12866)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 18:56:10 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/Users/doziewurum/ga/project4/PickAutoParts/pickautoparts/app/controllers/users_controller.rb:32: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/users_controller.rb:32: syntax error, unexpected end-of-input, expecting end
+app/controllers/users_controller.rb:32: syntax error, unexpected end-of-input, expecting end
+Started POST "/signup" for ::1 at 2020-02-10 18:56:27 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Jarule", "email"=>"hitest.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Jarule", "email"=>"hitest.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hitest.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jarule"], ["email", "hitest.com"], ["password_digest", "$2a$12$bcOAf.WL.NkvXfjrWri2gO8bt8jUDiFtbpa/awyPDnMn0yj/OWQqS"], ["created_at", "2020-02-10 23:56:27.605650"], ["updated_at", "2020-02-10 23:56:27.605650"]]
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10:in `create'
+Completed 500 Internal Server Error in 549ms (ActiveRecord: 8.6ms | Allocations: 78135)
+
+
+  
+NameError (undefined local variable or method `user' for #<UsersController:0x00007fd6b98cdab0>
+Did you mean?  @user):
+  
+app/controllers/users_controller.rb:11:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 18:57:12 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Jarule", "email"=>"hitest.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Jarule", "email"=>"hitest.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hitest.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:10:in `create'
+Completed 422 Unprocessable Entity in 376ms (Views: 0.2ms | ActiveRecord: 1.2ms | Allocations: 11431)
+
+
+Started POST "/signup" for ::1 at 2020-02-10 18:57:58 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Jule", "email"=>"hiter.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Jule", "email"=>"hiter.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hiter.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jule"], ["email", "hiter.com"], ["password_digest", "$2a$12$Utw31vZpapAylAXmCEWpo.fuvSiqkR2M5nvT8qhkLinSqtNBCrUyC"], ["created_at", "2020-02-10 23:57:58.441312"], ["updated_at", "2020-02-10 23:57:58.441312"]]
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10:in `create'
+Completed 500 Internal Server Error in 519ms (ActiveRecord: 1.9ms | Allocations: 75584)
+
+
+  
+NameError (undefined local variable or method `user' for #<UsersController:0x00007fd6b36f1260>
+Did you mean?  @user):
+  
+app/controllers/users_controller.rb:11:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 18:59:21 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Jule", "email"=>"hiter1.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Jule", "email"=>"hiter1.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hiter1.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jule"], ["email", "hiter1.com"], ["password_digest", "$2a$12$DdM0oIlwbw35BGyMUXZbbO1YUPqZmyzRVRdHZDBMfGXa0Adza90Pa"], ["created_at", "2020-02-10 23:59:22.179086"], ["updated_at", "2020-02-10 23:59:22.179086"]]
+  ↳ app/controllers/users_controller.rb:10:in `create'
+  [1m[35m (20.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10:in `create'
+Completed 500 Internal Server Error in 567ms (ActiveRecord: 22.3ms | Allocations: 81261)
+
+
+  
+NameError (undefined local variable or method `user' for #<UsersController:0x00007fd6b678b6a0>
+Did you mean?  @user):
+  
+app/controllers/users_controller.rb:11:in `create'
+Started POST "/signup" for ::1 at 2020-02-10 19:00:39 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/Users/doziewurum/ga/project4/PickAutoParts/pickautoparts/app/controllers/users_controller.rb:12: syntax error, unexpected ':', expecting =>
+... auth_token: auth_token, @user: user }
+...                              ^):
+  
+app/controllers/users_controller.rb:12: syntax error, unexpected ':', expecting =>
+app/controllers/users_controller.rb:12: syntax error, unexpected ':', expecting =>
+Started GET "/signup" for ::1 at 2020-02-10 19:01:26 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/signup"):
+  
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.1) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.1) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/orders" for ::1 at 2020-02-10 19:02:21 -0500
+Processing by OrdersController#index as HTML
+Completed 500 Internal Server Error in 185ms (ActiveRecord: 0.0ms | Allocations: 1546)
+
+
+  
+NameError (uninitialized constant AuthorizeApiRequest::JsonWebToken):
+  
+app/auth/authorize_api_request.rb:32:in `decoded_auth_token'
+app/auth/authorize_api_request.rb:20:in `user'
+app/auth/authorize_api_request.rb:9:in `call'
+app/controllers/application_controller.rb:13:in `authorize_request'
+Started POST "/auth/login" for ::1 at 2020-02-10 19:08:38 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"hiter2.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"hiter2.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hiter2.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 68ms (ActiveRecord: 1.0ms | Allocations: 4136)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::Message
+Did you mean?  MessagePack):
+  
+app/auth/authenticate_user.rb:21:in `user'
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/authentication_controller.rb:7:in `authenticate'
+Started POST "/auth/login" for ::1 at 2020-02-10 19:08:54 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"hiter2.com", "password_digest"=>"[FILTERED]", "authentication"=>{"email"=>"hiter2.com", "password_digest"=>"[FILTERED]"}}
+[31mUnpermitted parameters: :password_digest, :authentication[0m
+[31mUnpermitted parameters: :password_digest, :authentication[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hiter2.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.1ms | Allocations: 2075)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::Message
+Did you mean?  MessagePack):
+  
+app/auth/authenticate_user.rb:21:in `user'
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/authentication_controller.rb:7:in `authenticate'
+Started POST "/auth/login" for ::1 at 2020-02-10 19:09:35 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"hiter1.com", "password_digest"=>"[FILTERED]", "authentication"=>{"email"=>"hiter1.com", "password_digest"=>"[FILTERED]"}}
+[31mUnpermitted parameters: :password_digest, :authentication[0m
+[31mUnpermitted parameters: :password_digest, :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hiter1.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 332ms (ActiveRecord: 0.7ms | Allocations: 6136)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::Message
+Did you mean?  MessagePack):
+  
+app/auth/authenticate_user.rb:21:in `user'
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/authentication_controller.rb:7:in `authenticate'
+Started POST "/auth/login" for ::1 at 2020-02-10 19:11:03 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"hiter1.com", "password_digest"=>"[FILTERED]", "authentication"=>{"email"=>"hiter1.com", "password_digest"=>"[FILTERED]"}}
+[31mUnpermitted parameters: :password_digest, :authentication[0m
+[31mUnpermitted parameters: :password_digest, :authentication[0m
+  [1m[36mUser Load (18.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hiter1.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 443ms (ActiveRecord: 19.7ms | Allocations: 7430)
+
+
+  
+NoMethodError (undefined method `invalid_credentials' for MessagePack:Module):
+  
+app/auth/authenticate_user.rb:21:in `user'
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/authentication_controller.rb:7:in `authenticate'
+Started POST "/auth/login" for ::1 at 2020-02-10 19:11:24 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"hiter1.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"hiter1.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hiter1.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 500 Internal Server Error in 326ms (ActiveRecord: 0.2ms | Allocations: 2118)
+
+
+  
+NameError (uninitialized constant AuthenticateUser::JsonWebToken):
+  
+app/auth/authenticate_user.rb:9:in `call'
+app/controllers/authentication_controller.rb:7:in `authenticate'
