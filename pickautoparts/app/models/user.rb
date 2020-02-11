@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_secure_password
 
   # Model associations
-  has_many :todos, foreign_key: :created_by
+  has_many :orders, foreign_key: :created_by
   # Validations
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true
