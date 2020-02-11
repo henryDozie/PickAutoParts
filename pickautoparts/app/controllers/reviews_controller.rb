@@ -1,4 +1,4 @@
-class AutopartsController < ApplicationController
+class ReviewsController < ApplicationController
   before_action :set_autopart
   # before_action :set_brand
   before_action :set_autopart_review, only: [:show, :update, :destroy]
@@ -19,7 +19,7 @@ class AutopartsController < ApplicationController
 
   # POST /orders/:order_id/autoparts
   def create
-    @autopart.reviews.create!(review_params)
+    @autopart.reviews.create!(autopart_params)
     json_response(status: "SUCCESS", message: 'autopart created successfully.')
   end
 
