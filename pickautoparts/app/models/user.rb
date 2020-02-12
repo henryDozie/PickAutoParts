@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   # Model associationss
   has_many :orders, foreign_key: :created_by
+  has_many :reviews, foreign_key: :created_by
   # has_many :brands, foreign_key: :created_by
   # Validations
   validates :name, presence: true
