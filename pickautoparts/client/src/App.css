@@ -1,0 +1,56 @@
+header{
+  height: 20vh;
+  border: 5px solid red;
+  display: flex;
+  flex-direction: row;
+}
+.logo{
+  border: 5px solid red;
+  width: 8.5vw;
+  height: 15vh;
+  border-radius: 5em;
+  margin: 2vh;
+}
+.headRegion{
+  display: flex;
+  flex-direction: column;
+  border: 5px solid red;
+  width: 90vw;
+}
+.searchBar{
+  /* border: 5px solid red; */
+  width: 50vw;
+  /* margin: 0 auto; */
+  height: 5vh;
+  border-radius: 1em;
+  display: flex;
+  justify-content: space-around;
+}
+.cartAndBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 7vh;
+  margin-left: 7vw;
+  width: 80vw;
+  /* border: 5px solid red; */
+}
+.searchBar>input{
+  border: 2px solid #db330d;
+  width: 50vw;
+  height: 4.5vh;
+  border-radius: 0.7em;
+}
+button{
+  width: 6.5vw;
+  height: 5.03vh;
+  border-radius: 0.7em;
+  background-color: #db330d;
+}
+.loginAndSignUp{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+

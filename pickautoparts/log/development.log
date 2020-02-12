@@ -10190,3 +10190,56 @@ FOREIGN KEY ("autopart_id")
   [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/signup" for ::1 at 2020-02-12 09:23:23 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Dozie", "email"=>"doziewurum@gmail.com", "address"=>"528 coventry drive", "password"=>"[FILTERED]", "user"=>{"name"=>"Dozie", "email"=>"doziewurum@gmail.com", "address"=>"528 coventry drive"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "address", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Dozie"], ["email", "doziewurum@gmail.com"], ["address", "528 coventry drive"], ["password_digest", "$2a$12$Ln96.RW/y.7WNQ1wOGU8X.Izon1SEPtmGb8aQu.dgVSG67m1TCZFG"], ["created_at", "2020-02-12 14:23:24.327616"], ["updated_at", "2020-02-12 14:23:24.327616"]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (Duration: 16.1ms | Allocations: 2338)
+UserMailer#welcome_email: processed outbound mail in 77.7ms
+Delivered mail 5e440a5d53d02_16a773fdfa713293445410@macdeMacBook-Pro-2.local.mail (2363.0ms)
+Date: Wed, 12 Feb 2020 09:23:25 -0500
+From: postmaster.iedb@gmail.com
+To: doziewurum@gmail.com
+Message-ID: <5e440a5d53d02_16a773fdfa713293445410@macdeMacBook-Pro-2.local.mail>
+Subject: Welcome Dozie
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Hi Dozie</h1>
+<p>Welcome to the Pick Auto Parts</p>
+<p>We hope to start helping you with your shopping</p>
+<br>
+<h5>Henry Dozie</h5>
+  </body>
+</html>
+
+Completed 201 Created in 3705ms (Views: 0.3ms | ActiveRecord: 3.3ms | Allocations: 32805)
+
+
