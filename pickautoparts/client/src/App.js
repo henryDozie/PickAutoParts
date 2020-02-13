@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import { registerUser, loginUser, verifyUser } from "./services/api_helper";
-import logo from "./logo.svg";
+import { registerUser, loginUser } from "./services/api_helper";
+// import logo from "./logo.svg";
 import Header from "./components/header";
-
+import { Route, withRouter } from "react-router-dom";
+import OrderContainer from "./components/orderContainer";
+import LoginForm from "./components/loginForm";
+import RegisterForm from "./components/registerForm";
 import "./App.css";
+import AutopartContainer from "./components/autopartContainer";
 
 class App extends Component {
   constructor(props) {
@@ -12,8 +16,9 @@ class App extends Component {
       name: "",
       email: "",
       password: "",
-      currentUser: null,
-      errorText: ""
+      currentUser: false,
+      errorText: "",
+      loggedIn: false
     };
   }
 
@@ -21,8 +26,8 @@ class App extends Component {
     e.preventDefault();
     const currentUser = await registerUser(registerData);
     if (!currentUser.errorMessage) {
-      this.setState({ currentUser });
-      this.props.history.push("/todos");
+      this.setState({ currentUser, loggedIn: true });
+      this.props.history.push("/orders");
     } else {
       this.setState({ errorText: currentUser.errorMessage });
     }
@@ -30,40 +35,49 @@ class App extends Component {
 
   handleLogin = async (e, loginData) => {
     e.preventDefault();
+    console.log("hit handlelogin");
     const currentUser = await loginUser(loginData);
+    console.log(currentUser);
     this.setState({ currentUser });
-    this.props.history.push("/todos");
+    this.props.history.push("/orders");
   };
 
-  handleLogout = () => {
+  handleLogout = e => {
+    e.preventDefault();
     this.setState({
-      currentUser: null
+      currentUser: false
     });
     localStorage.removeItem("authToken");
     localStorage.removeItem("name");
     localStorage.removeItem("email");
   };
 
-  componentDidMount() {
-    verifyUser();
-    if (localStorage.getItem("authToken")) {
-      const name = localStorage.getItem("name");
-      const email = localStorage.getItem("email");
-      const user = { name, email };
-      user &&
-        this.setState({
-          currentUser: user
-        });
-    }
-  }
-
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header
+          currentUser={this.state.currentUser}
+          handleLogout={this.handleLogout}
+        />
+
+        <AutopartContainer />
+        <Route
+          path="/login"
+          render={() => <LoginForm handleLogin={this.handleLogin} />}
+        />
+        <Route
+          path="/register"
+          render={() => (
+            <RegisterForm
+              handleRegister={this.handleRegister}
+              errorText={this.state.errorText}
+            />
+          )}
+        />
+        <Route path="/orders" render={() => <OrderContainer />} />
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
