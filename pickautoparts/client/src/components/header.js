@@ -1,13 +1,35 @@
 import React, { Component } from "react";
 import Form from "./searchform";
+import { verifyUser } from "../services/api_helper";
+import { Link, withRouter } from "react-router-dom";
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      currentUser: false,
+      errorText: "",
+      loggedIn: false
+    };
+  }
+  componentDidMount() {
+    verifyUser();
+    if (localStorage.getItem("authToken")) {
+      const name = localStorage.getItem("name");
+      const email = localStorage.getItem("email");
+      const user = { name, email };
+      user &&
+        this.setState({
+          currentUser: user
+        });
+    }
   }
 
   render() {
+    console.log(this.state.currentUser);
     return (
       <div>
         <header>
@@ -15,20 +37,35 @@ class Header extends Component {
           <div className="headRegion">
             <div className="loginAndSignUp">
               <div className="login">
-                <button><i class="fas fa-sign-in-alt fa-3x"></i></button>
+                {this.props.currentUser ? (
+                  <div className="logout">
+                    <button onClick={e => this.props.handleLogout(e)}><h2>Logout</h2></button>
+                  </div>
+                ) : (
+                  <Link to="/login">
+                    <button>
+                      <i className="fas fa-sign-in-alt fa-3x"></i>
+                    </button>
+                  </Link>
+                )}
               </div>
               <div className="signup">
-                <button><i class="fas fa-user-plus fa-3x"></i></button>
+                <Link to="/register">
+                  <button>
+                    <i className="fas fa-user-plus fa-3x"></i>
+                  </button>
+                </Link>
               </div>
             </div>
+            {/* )} */}
             <div className="cartAndBar">
-              <Form />
+              <Form handleLogin={this.handleLogin} />
               <div className="profileButton">
                 <button>
-                  <i class="fas fa-user fa-3x"></i>
+                  <i className="fas fa-user fa-3x"></i>
                 </button>
               </div>
-              <i class="fas fa-shopping-cart fa-3x"></i>
+              <i className="fas fa-shopping-cart fa-3x"></i>
             </div>
           </div>
         </header>
@@ -37,4 +74,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);
