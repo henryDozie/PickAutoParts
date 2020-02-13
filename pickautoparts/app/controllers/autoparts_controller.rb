@@ -5,11 +5,12 @@ class AutopartsController < ApplicationController
 
   # GET /orders/:order_id/autoparts
   def index
-    # if(set_order)
+    if(set_order)
     json_response(@order.autoparts)
-    # else
-    #   json_response(@brand.autoparts)
-    # end
+    else
+      autoparts = Autopart.all
+      json_response(autoparts)
+    end
   end
 
   # GET /orders/:order_id/autoparts/:id
