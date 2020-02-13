@@ -58,6 +58,28 @@ export const postOrder = async (postData) => {
 // UPDATE ORDER
 export const putOrder = async (id, postData) => {
   const resp = await api.put(`/orders/${id}`, postData);
-  const todo = {id: id, title: resp.data.data}
-  return todo;
+  const order = {id: id, shipping_address: resp.data.data}
+  return order;
 }
+
+//=============+AUTOPARTS============//
+
+// GET ALL ORDERS
+export const indexAutoparts = async () => {
+  const resp = await api.get('/autoparts');
+  return resp.data;
+}
+
+//POST THE Autoparts
+export const postAutopart = async (id, pid, postData) => {
+  const resp = await api.post(`/orders/${id}/autoparts/${pid}`, postData);
+  return resp.data;
+}
+
+// UPDATE Autoparts
+export const putAutopart = async (id, pid, postData) => {
+  const resp = await api.put(`/orders/${id}/autoparts/${pid}`, postData);
+  const autopart = {id: id, obj: resp.data.data}
+  return autopart;
+}
+
