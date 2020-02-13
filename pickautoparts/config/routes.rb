@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :users do
+  # resources :users do
     resources :orders do
       resources :autoparts do
         resources :reviews
       end
     end
-  end
+
+    get 'autoparts', to: 'public#index'
 
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
