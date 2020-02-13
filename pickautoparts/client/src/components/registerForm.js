@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class RegisterForm extends Component {
+ class RegisterForm extends Component {
   constructor(props) {
     super(props);
 
@@ -22,35 +23,38 @@ export default class RegisterForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="loginPage">
         {this.props.errorText && <p>{this.props.errorText}</p>}
-        <form onSubmit={(e) => this.props.handleRegister(e, this.state)}>
-          <h2>Register!</h2>
-          <label htmlFor="name">name</label>
+        <form
+          onSubmit={(e) => this.props.handleRegister(e, this.state)}
+          className="loginForm"
+        >
+          <h1>Register!</h1>
           <input
             type="text"
             name="name"
+            placeholder="Name"
             value={this.state.name}
             onChange={this.handleChange}
           />
-          <label htmlFor="address">address</label>
           <input
             type="text"
             name="address"
+            placeholder="Physical Address"
             value={this.state.address}
             onChange={this.handleChange}
           />
-          <label htmlFor="email">email</label>
           <input
             type="text"
             name="email"
+            placeholder="Valid Email"
             value={this.state.email}
             onChange={this.handleChange}
           />
-          <label htmlFor="password">password</label>
           <input
             type="password"
             name="password"
+            placeholder="Password"
             value={this.state.password}
             onChange={this.handleChange}
           />
@@ -59,4 +63,6 @@ export default class RegisterForm extends Component {
       </div>
     )
   }
-}
+ }
+
+export default withRouter(RegisterForm);
