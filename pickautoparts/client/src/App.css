@@ -1,27 +1,27 @@
-body{
-  
+body {
 }
 
-header{
+header {
   height: 20vh;
   border: 5px solid black;
   display: flex;
   flex-direction: row;
+  /* background: #232F3E; */
 }
-.logo{
+.logo {
   border: 5px solid red;
   width: 7.6vw;
   height: 15vh;
   border-radius: 5em;
   margin: 2vh;
 }
-.headRegion{
+.headRegion {
   display: flex;
   flex-direction: column;
   border: 5px solid black;
   width: 90vw;
 }
-.searchBar{
+.searchBar {
   /* border: 5px solid red; */
   width: 50vw;
   /* margin: 0 auto; */
@@ -30,7 +30,7 @@ header{
   display: flex;
   justify-content: space-around;
 }
-.cartAndBar{
+.cartAndBar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -39,14 +39,14 @@ header{
   width: 80vw;
   /* border: 5px solid red; */
 }
-.searchBar>input{
+.searchBar > input {
   /* border: 2px solid #db330d; */
   border: 2px solid black;
   width: 50vw;
   height: 4.5vh;
   border-radius: 0.7em;
 }
-button{
+button {
   width: 6.5vw;
   height: 5.03vh;
   border-radius: 0.7em;
@@ -55,52 +55,53 @@ button{
   background-color: black;
   color: aliceblue;
 }
-.loginAndSignUp{
+.loginAndSignUp {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
-.autos{
+.autos {
   width: 65vw;
-  margin: 0 auto;
+  margin: 10vh auto;
 }
 
-img{
+img {
   height: 20vh;
+  margin: 0 auto;
+  /* border: 2px solid red; */
 }
 
-.img{
-  border: 1px solid red;
+.img {
+  border-right: 1px solid #f6f6f6;
   width: 20vw;
   height: 25vh;
+  display: flex;
 }
 
-.autopartCard{
- display: flex;
- flex-direction: row;
- border: 2px solid red;
+.autopartCard {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #f6f6f6;
 }
 
-
-.logout > button{
+.logout > button {
   background-color: #db330d;
 }
 
-.fas{
+.fas {
   color: red;
 }
 
-.loginPage{
+.loginPage {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   /* background: #34495e; */
   /* background: brown; */
-  
 }
 
-.loginForm{
+.loginForm {
   width: 30vw;
   padding: 2vw;
   position: absolute;
@@ -111,18 +112,18 @@ img{
   text-align: center;
   border-radius: 2em;
   margin: 10vh auto;
-  background: url('./images/bmw2.gif');
+  background: url("./images/bmw2.gif");
   background-size: cover;
   /* object-fit: contain; */
-
 }
 
-.loginForm h1{
+.loginForm h1 {
   color: white;
   text-transform: uppercase;
   font-weight: 500;
 }
-.loginForm input[type = "text"],.loginForm input[type = "password"]{
+.loginForm input[type="text"],
+.loginForm input[type="password"] {
   border: 0;
   background: none;
   display: block;
@@ -138,11 +139,11 @@ img{
   transition: 0.25s;
 }
 
-.loginForm input[type = "text"]:focus,.loginForm input[type = "password"]:focus{
+.loginForm input[type="text"]:focus,
+.loginForm input[type="password"]:focus {
   width: 280px;
-  border-color: #db330d;
+  border-color: #315f94;
   background: rgba(0, 0, 0, 0.9);
-
 }
 
 .loginForm > button {
@@ -151,7 +152,7 @@ img{
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #db330d;
+  border: 2px solid #f3c94d;
   padding: 14px 10px;
   width: 200px;
   outline: none;
@@ -161,8 +162,22 @@ img{
   cursor: pointer;
 }
 
-.loginForm > button:hover{
+.loginForm > button:hover {
   background: #2ecc71;
 }
 
-
+.registerForm {
+  width: 40vw;
+  padding: 2vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #191919;
+  text-align: center;
+  border-radius: 2em;
+  margin: 10vh auto;
+  background: url("./images/bmw2.gif");
+  background-size: cover;
+  /* object-fit: contain; */
+}
