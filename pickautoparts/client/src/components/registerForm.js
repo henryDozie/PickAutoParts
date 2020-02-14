@@ -27,13 +27,14 @@ import { withRouter } from 'react-router-dom';
         {this.props.errorText && <p>{this.props.errorText}</p>}
         <form
           onSubmit={(e) => this.props.handleRegister(e, this.state)}
-          className="loginForm"
+          className="registerForm loginForm"
         >
           <h1>Register!</h1>
           <input
             type="text"
             name="name"
             placeholder="Name"
+            autoFocus
             value={this.state.name}
             onChange={this.handleChange}
           />
