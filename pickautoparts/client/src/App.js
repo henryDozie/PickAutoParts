@@ -8,6 +8,7 @@ import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
 import "./App.css";
 import AutopartContainer from "./components/autopartContainer";
+import Cart from "./components/cart";
 
 class App extends Component {
   constructor(props) {
@@ -35,11 +36,10 @@ class App extends Component {
 
   handleLogin = async (e, loginData) => {
     e.preventDefault();
-    console.log("hit handlelogin");
     const currentUser = await loginUser(loginData);
     console.log(currentUser);
     this.setState({ currentUser });
-    this.props.history.push("/orders");
+    this.props.history.push("/home");
   };
 
   handleLogout = e => {
@@ -60,7 +60,7 @@ class App extends Component {
           handleLogout={this.handleLogout}
         />
 
-        <AutopartContainer />
+        <Route path="/home" render={() => <AutopartContainer />} />
         <Route
           path="/login"
           render={() => <LoginForm handleLogin={this.handleLogin} />}
@@ -75,6 +75,7 @@ class App extends Component {
           )}
         />
         <Route path="/orders" render={() => <OrderContainer />} />
+        <Route path="/cart" render={() => <Cart />} />
       </div>
     );
   }
