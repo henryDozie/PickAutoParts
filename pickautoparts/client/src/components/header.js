@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Form from "./searchform";
-import { verifyUser } from "../services/api_helper";
+import { verifyUser, indexOrders } from "../services/api_helper";
 import { Link, withRouter } from "react-router-dom";
 
 class Header extends Component {
@@ -28,12 +28,24 @@ class Header extends Component {
     }
   }
 
+  profileSubmit = async (e) => {
+    e.preventDefault()
+    const resp = await indexOrders()
+    console.log(resp);
+    
+    const smthing = resp.filter((resp) => resp.created_by === 1)
+    
+    console.log(smthing);
+    
+     
+  }
+
   render() {
     console.log(this.state.currentUser);
     return (
       <div>
         <header>
-          <div className="logo"></div>
+          <Link to="/home"><div className="logo"></div></Link>
           <div className="headRegion">
             <div className="loginAndSignUp">
               <div className="login">
@@ -60,12 +72,16 @@ class Header extends Component {
             {/* )} */}
             <div className="cartAndBar">
               <Form handleLogin={this.handleLogin} />
-              <div className="profileButton">
-                <button>
-                  <i className="fas fa-user fa-3x"></i>
-                </button>
-              </div>
-              <i className="fas fa-shopping-cart fa-3x"></i>
+              {this.props.currentUser &&
+                <div className="profileButton">
+                  <button onClick={e => this.profileSubmit(e)}>
+                    {/* <i className="fas fa-user fa-3x"></i> */}
+                    <h2>Profile</h2>
+                  </button>
+                </div>}
+                <Link to="/cart">
+                <i className="fas fa-shopping-cart fa-3x"></i>
+                </Link>
             </div>
           </div>
         </header>
