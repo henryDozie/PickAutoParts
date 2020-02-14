@@ -39,7 +39,7 @@ class AutopartsController < ApplicationController
   private
 
   def autopart_params
-    params.permit(:name, :img_url, :description)
+    params.permit(:name, :img_url, :description, :price)
   end
 
   def set_order
