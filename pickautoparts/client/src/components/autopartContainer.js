@@ -25,6 +25,7 @@ class AutopartContainer extends Component {
 
   render() {
     return (
+      <div>
       <div className="autos">
         {this.state.apiLoaded &&
           this.state.autoparts.map(autopart => (
@@ -35,10 +36,12 @@ class AutopartContainer extends Component {
               <div className="partdesc">
                 <h3>{autopart.name}</h3>
                 <h5>{autopart.description}</h5>
+                <h4>$ {autopart.price}</h4>
               </div>
             </div>
           ))}
-      </div>
+        </div>
+        </div>
     );
   }
 }
