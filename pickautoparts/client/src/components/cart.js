@@ -1,25 +1,9 @@
-import React, { Component } from "react";
-import { indexAutoparts } from "../services/api_helper";
+import React from "react";
 
-class AutopartContainer extends Component {
-  constructor(props) {
-    super(props);
+function Cart(props) {
+  console.log(props);
+  return <div>
 
-    this.state = {
-      autoparts: [],
-      apiLoaded: false
-    };
-  }
-
-  
-
-  render() {
-    return (
-      <div>
-      
-        </div>
-    );
-  }
+  </div>;
 }
-
-export default AutopartContainer;
+export default Cart;
