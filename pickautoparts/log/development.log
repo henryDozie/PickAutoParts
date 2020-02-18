@@ -15278,3 +15278,2230 @@ Processing by OrdersController#index as HTML
 Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 0.5ms | Allocations: 1674)
 
 
+  [1m[35m (12.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddPriceToAutopart (20200213223320)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "autoparts" ADD "price" float[0m
+  [1m[36mprimary::SchemaMigration Create (12.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200213223320"]]
+  [1m[35m (27.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/orders/1/autoparts/1" for ::1 at 2020-02-13 17:36:03 -0500
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (18.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AutopartsController#show as */*
+  Parameters: {"name"=>"V8 Cylinder Block", "description"=>"This is the description", "img_url"=>"https://imgur.com/GRlqIgS.png", "order_id"=>"1", "id"=>"1", "autopart"=>{"name"=>"V8 Cylinder Block", "description"=>"This is the description", "img_url"=>"https://imgur.com/GRlqIgS.png"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.8ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 228ms (Views: 61.7ms | ActiveRecord: 5.4ms | Allocations: 20750)
+
+
+Started PUT "/orders/1/autoparts/1" for ::1 at 2020-02-13 17:37:03 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"1", "name"=>"Suspensions", "description"=>"Great product for models after 2016", "img_url"=>"https://imgur.com/XFp1zEa.png", "price"=>199.99, "order_id"=>"1", "autopart"=>{"id"=>"1", "name"=>"Suspensions", "description"=>"Great product for models after 2016", "img_url"=>"https://imgur.com/XFp1zEa.png", "price"=>199.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :price, :order_id, :autopart[0m
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 2577)
+
+
+Started GET "/orders/1/autoparts/2" for ::1 at 2020-02-13 17:37:12 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"2", "name"=>"Suspensions", "description"=>"Great product for models after 2016", "img_url"=>"https://imgur.com/XFp1zEa.png", "price"=>199.99, "order_id"=>"1", "autopart"=>{"id"=>"2", "name"=>"Suspensions", "description"=>"Great product for models after 2016", "img_url"=>"https://imgur.com/XFp1zEa.png", "price"=>199.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 2174)
+
+
+Started GET "/orders/1/autoparts/2" for ::1 at 2020-02-13 17:37:37 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"2", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>99.99, "order_id"=>"1", "autopart"=>{"id"=>"2", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>99.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 2172)
+
+
+Started PUT "/orders/1/autoparts/2" for ::1 at 2020-02-13 17:37:45 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"2", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>99.99, "order_id"=>"1", "autopart"=>{"id"=>"2", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>99.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :price, :order_id, :autopart[0m
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 2357)
+
+
+Started GET "/orders/1/autoparts/3" for ::1 at 2020-02-13 17:37:53 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"3", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>99.99, "order_id"=>"1", "autopart"=>{"id"=>"3", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>99.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 2157)
+
+
+Started GET "/orders/1/autoparts/3" for ::1 at 2020-02-13 17:38:19 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"3", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>59.99, "order_id"=>"1", "autopart"=>{"id"=>"3", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>59.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 2155)
+
+
+Started PUT "/orders/1/autoparts/3" for ::1 at 2020-02-13 17:38:26 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"3", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>59.99, "order_id"=>"1", "autopart"=>{"id"=>"3", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>59.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :price, :order_id, :autopart[0m
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 2340)
+
+
+Started GET "/orders/1/autoparts/2" for ::1 at 2020-02-13 17:38:33 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"2", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>59.99, "order_id"=>"1", "autopart"=>{"id"=>"2", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>59.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 2157)
+
+
+Started GET "/orders/1/autoparts/1" for ::1 at 2020-02-13 17:38:46 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>59.99, "order_id"=>"1", "autopart"=>{"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>59.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 2155)
+
+
+Started PUT "/orders/1/autoparts/1" for ::1 at 2020-02-13 17:39:08 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199, "order_id"=>"1", "autopart"=>{"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :price, :order_id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.7ms)[0m  [1m[33mUPDATE "autoparts" SET "name" = ?, "img_url" = ?, "description" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["name", "Universal Gear Stick"], ["img_url", "https://imgur.com/oe0WEhA.png"], ["description", "Replacement kik comes with wax spray"], ["updated_at", "2020-02-13 22:39:09.003819"], ["id", 1]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 2.8ms | Allocations: 4397)
+
+
+Started GET "/orders/1/autoparts/1" for ::1 at 2020-02-13 17:39:15 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199, "order_id"=>"1", "autopart"=>{"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 0.5ms | Allocations: 2155)
+
+
+Started PUT "/orders/1/autoparts/1" for ::1 at 2020-02-13 17:40:57 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199, "order_id"=>"1", "autopart"=>{"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :price, :order_id, :autopart[0m
+Completed 200 OK in 255ms (Views: 0.2ms | ActiveRecord: 3.2ms | Allocations: 26271)
+
+
+Started GET "/orders/1/autoparts/1" for ::1 at 2020-02-13 17:41:07 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199, "order_id"=>"1", "autopart"=>{"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 2161)
+
+
+Started GET "/orders/1/autoparts/1" for ::1 at 2020-02-13 18:01:26 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199, "order_id"=>"1", "autopart"=>{"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 98ms (Views: 0.4ms | ActiveRecord: 1.0ms | Allocations: 17270)
+
+
+Started PUT "/orders/1/autoparts/1" for ::1 at 2020-02-13 18:01:38 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199, "order_id"=>"1", "autopart"=>{"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :order_id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.5ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 199.0], ["updated_at", "2020-02-13 23:01:38.455142"], ["id", 1]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 2.0ms | Allocations: 4429)
+
+
+Started GET "/orders/1/autoparts/1" for ::1 at 2020-02-13 18:01:43 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199, "order_id"=>"1", "autopart"=>{"id"=>"1", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 0.6ms | Allocations: 2156)
+
+
+Started GET "/orders/1/autoparts/2" for ::1 at 2020-02-13 18:01:53 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"2", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199, "order_id"=>"1", "autopart"=>{"id"=>"2", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>199}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 2155)
+
+
+Started PUT "/orders/1/autoparts/2" for ::1 at 2020-02-13 18:02:58 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"2", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>59.99, "order_id"=>"1", "autopart"=>{"id"=>"2", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>59.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :order_id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.3ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 59.99], ["updated_at", "2020-02-13 23:02:58.225901"], ["id", 2]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 4327)
+
+
+Started GET "/orders/1/autoparts/3" for ::1 at 2020-02-13 18:03:05 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"3", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>59.99, "order_id"=>"1", "autopart"=>{"id"=>"3", "name"=>"Break Pads", "description"=>"Comes with a warranty of 24 months", "img_url"=>"https://imgur.com/nJwbXep.png", "price"=>59.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 7ms (Views: 0.7ms | ActiveRecord: 0.6ms | Allocations: 2157)
+
+
+Started PUT "/orders/1/autoparts/3" for ::1 at 2020-02-13 18:03:38 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"3", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>27.99, "order_id"=>"1", "autopart"=>{"id"=>"3", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>27.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :order_id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.3ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 27.99], ["updated_at", "2020-02-13 23:03:38.217811"], ["id", 3]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 4327)
+
+
+Started GET "/orders/1/autoparts/3" for ::1 at 2020-02-13 18:03:44 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"3", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>27.99, "order_id"=>"1", "autopart"=>{"id"=>"3", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>27.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 2156)
+
+
+Started GET "/orders/1/autoparts/4" for ::1 at 2020-02-13 18:04:12 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"4", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>27.99, "order_id"=>"1", "autopart"=>{"id"=>"4", "name"=>"Universal Gear Stick", "description"=>"Replacement kik comes with wax spray", "img_url"=>"https://imgur.com/oe0WEhA.png", "price"=>27.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 2156)
+
+
+Started PUT "/orders/1/autoparts/4" for ::1 at 2020-02-13 18:05:00 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"4", "name"=>"Electronic BMW Geer Stick", "description"=>"Plug and play stick shift. Optional upgrade available with more than 3 purchases", "img_url"=>"https://imgur.com/a062nOr.png", "price"=>399.99, "order_id"=>"1", "autopart"=>{"id"=>"4", "name"=>"Electronic BMW Geer Stick", "description"=>"Plug and play stick shift. Optional upgrade available with more than 3 purchases", "img_url"=>"https://imgur.com/a062nOr.png", "price"=>399.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :order_id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.3ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 399.99], ["updated_at", "2020-02-13 23:05:00.947920"], ["id", 4]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 4329)
+
+
+Started PUT "/orders/1/autoparts/5" for ::1 at 2020-02-13 18:05:06 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"5", "name"=>"Electronic BMW Geer Stick", "description"=>"Plug and play stick shift. Optional upgrade available with more than 3 purchases", "img_url"=>"https://imgur.com/a062nOr.png", "price"=>399.99, "order_id"=>"1", "autopart"=>{"id"=>"5", "name"=>"Electronic BMW Geer Stick", "description"=>"Plug and play stick shift. Optional upgrade available with more than 3 purchases", "img_url"=>"https://imgur.com/a062nOr.png", "price"=>399.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :order_id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.3ms)[0m  [1m[33mUPDATE "autoparts" SET "name" = ?, "img_url" = ?, "description" = ?, "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["name", "Electronic BMW Geer Stick"], ["img_url", "https://imgur.com/a062nOr.png"], ["description", "Plug and play stick shift. Optional upgrade available with more than 3 purchases"], ["price", 399.99], ["updated_at", "2020-02-13 23:05:06.396894"], ["id", 5]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 4363)
+
+
+Started GET "/orders/1/autoparts/4" for ::1 at 2020-02-13 18:05:37 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"4", "name"=>"Electronic BMW Geer Stick", "description"=>"Plug and play stick shift. Optional upgrade available with more than 3 purchases", "img_url"=>"https://imgur.com/a062nOr.png", "price"=>399.99, "order_id"=>"1", "autopart"=>{"id"=>"4", "name"=>"Electronic BMW Geer Stick", "description"=>"Plug and play stick shift. Optional upgrade available with more than 3 purchases", "img_url"=>"https://imgur.com/a062nOr.png", "price"=>399.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 2157)
+
+
+Started GET "/orders/1/autoparts/5" for ::1 at 2020-02-13 18:05:41 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"5", "name"=>"Electronic BMW Geer Stick", "description"=>"Plug and play stick shift. Optional upgrade available with more than 3 purchases", "img_url"=>"https://imgur.com/a062nOr.png", "price"=>399.99, "order_id"=>"1", "autopart"=>{"id"=>"5", "name"=>"Electronic BMW Geer Stick", "description"=>"Plug and play stick shift. Optional upgrade available with more than 3 purchases", "img_url"=>"https://imgur.com/a062nOr.png", "price"=>399.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 7ms (Views: 0.6ms | ActiveRecord: 0.6ms | Allocations: 2157)
+
+
+Started PUT "/orders/1/autoparts/5" for ::1 at 2020-02-13 18:07:00 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"5", "name"=>"Alternator Supercharge", "description"=>"By 10, get 2 for free", "img_url"=>"https://imgur.com/lX1kCjf.png", "price"=>399.99, "order_id"=>"1", "autopart"=>{"id"=>"5", "name"=>"Alternator Supercharge", "description"=>"By 10, get 2 for free", "img_url"=>"https://imgur.com/lX1kCjf.png", "price"=>399.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :order_id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (6.8ms)[0m  [1m[33mUPDATE "autoparts" SET "name" = ?, "img_url" = ?, "description" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["name", "Alternator Supercharge"], ["img_url", "https://imgur.com/lX1kCjf.png"], ["description", "By 10, get 2 for free"], ["updated_at", "2020-02-13 23:07:01.021718"], ["id", 5]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 18ms (Views: 0.2ms | ActiveRecord: 8.4ms | Allocations: 4354)
+
+
+Started GET "/orders/1/autoparts/5" for ::1 at 2020-02-13 18:07:06 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"5", "name"=>"Alternator Supercharge", "description"=>"By 10, get 2 for free", "img_url"=>"https://imgur.com/lX1kCjf.png", "price"=>399.99, "order_id"=>"1", "autopart"=>{"id"=>"5", "name"=>"Alternator Supercharge", "description"=>"By 10, get 2 for free", "img_url"=>"https://imgur.com/lX1kCjf.png", "price"=>399.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 2157)
+
+
+Started GET "/orders/1/autoparts/6" for ::1 at 2020-02-13 18:07:15 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"6", "name"=>"Alternator Supercharge", "description"=>"By 10, get 2 for free", "img_url"=>"https://imgur.com/lX1kCjf.png", "price"=>399.99, "order_id"=>"1", "autopart"=>{"id"=>"6", "name"=>"Alternator Supercharge", "description"=>"By 10, get 2 for free", "img_url"=>"https://imgur.com/lX1kCjf.png", "price"=>399.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 2155)
+
+
+Started PUT "/orders/1/autoparts/6" for ::1 at 2020-02-13 18:07:47 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"6", "name"=>"Ball bearing Hub", "description"=>"Comes with additional oild components at no cost", "img_url"=>"https://imgur.com/kKWa5RT.png", "price"=>139.99, "order_id"=>"1", "autopart"=>{"id"=>"6", "name"=>"Ball bearing Hub", "description"=>"Comes with additional oild components at no cost", "img_url"=>"https://imgur.com/kKWa5RT.png", "price"=>139.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :order_id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (13.5ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 139.99], ["updated_at", "2020-02-13 23:07:47.775668"], ["id", 6]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 23ms (Views: 0.2ms | ActiveRecord: 14.8ms | Allocations: 4327)
+
+
+Started GET "/orders/1/autoparts/7" for ::1 at 2020-02-13 18:07:56 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"7", "name"=>"Ball bearing Hub", "description"=>"Comes with additional oild components at no cost", "img_url"=>"https://imgur.com/kKWa5RT.png", "price"=>139.99, "order_id"=>"1", "autopart"=>{"id"=>"7", "name"=>"Ball bearing Hub", "description"=>"Comes with additional oild components at no cost", "img_url"=>"https://imgur.com/kKWa5RT.png", "price"=>139.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 0.6ms | Allocations: 2154)
+
+
+Started PUT "/orders/1/autoparts/7" for ::1 at 2020-02-13 18:08:35 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"7", "name"=>"Bearings", "description"=>"Multiple sized kits", "img_url"=>"https://imgur.com/FMM2IOt.png", "price"=>129.99, "order_id"=>"1", "autopart"=>{"id"=>"7", "name"=>"Bearings", "description"=>"Multiple sized kits", "img_url"=>"https://imgur.com/FMM2IOt.png", "price"=>129.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :order_id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.4ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 129.99], ["updated_at", "2020-02-13 23:08:35.100370"], ["id", 7]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 4325)
+
+
+Started GET "/orders/1/autoparts/8" for ::1 at 2020-02-13 18:09:49 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"8", "name"=>"Bearings", "description"=>"Multiple sized kits", "img_url"=>"https://imgur.com/FMM2IOt.png", "price"=>100.99, "order_id"=>"1", "autopart"=>{"id"=>"8", "name"=>"Bearings", "description"=>"Multiple sized kits", "img_url"=>"https://imgur.com/FMM2IOt.png", "price"=>100.99}}
+  [1m[36mUser Load (5.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 10ms (Views: 0.4ms | ActiveRecord: 5.5ms | Allocations: 2155)
+
+
+Started PUT "/orders/1/autoparts/8" for ::1 at 2020-02-13 18:11:09 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"id"=>"8", "name"=>"Breaking System", "description"=>"Aestetic and functional kit for breaking systms", "price"=>100.99, "order_id"=>"1", "autopart"=>{"id"=>"8", "name"=>"Breaking System", "description"=>"Aestetic and functional kit for breaking systms", "price"=>100.99}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :id, :order_id, :autopart[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.6ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:11:09.284809"], ["id", 8]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 4.9ms | Allocations: 4311)
+
+
+Started GET "/orders/1/autoparts/8" for ::1 at 2020-02-13 18:11:19 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"id"=>"8", "name"=>"Breaking System", "description"=>"Aestetic and functional kit for breaking systms", "price"=>100.99, "order_id"=>"1", "autopart"=>{"id"=>"8", "name"=>"Breaking System", "description"=>"Aestetic and functional kit for breaking systms", "price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.5ms | Allocations: 2154)
+
+
+Started PUT "/orders/1/autoparts/9" for ::1 at 2020-02-13 18:12:50 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"9", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.3ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:12:50.636601"], ["id", 9]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 4279)
+
+
+Started PUT "/orders/1/autoparts/10" for ::1 at 2020-02-13 18:12:55 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"10", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.5ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:12:55.974082"], ["id", 10]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 15ms (Views: 0.3ms | ActiveRecord: 2.3ms | Allocations: 4280)
+
+
+Started GET "/orders/1/autoparts/10" for ::1 at 2020-02-13 18:13:00 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"10", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 2148)
+
+
+Started PUT "/orders/1/autoparts/11" for ::1 at 2020-02-13 18:13:10 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"11", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (14.6ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:13:10.102626"], ["id", 11]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 26ms (Views: 0.3ms | ActiveRecord: 16.3ms | Allocations: 4279)
+
+
+Started PUT "/orders/1/autoparts/12" for ::1 at 2020-02-13 18:13:12 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"12", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.4ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:13:12.407264"], ["id", 12]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 1.8ms | Allocations: 4282)
+
+
+Started PUT "/orders/1/autoparts/13" for ::1 at 2020-02-13 18:13:14 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"13", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.4ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:13:14.441091"], ["id", 13]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 2.1ms | Allocations: 4280)
+
+
+Started PUT "/orders/1/autoparts/14" for ::1 at 2020-02-13 18:13:16 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"14", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.6ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:13:16.231093"], ["id", 14]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 1.9ms | Allocations: 4280)
+
+
+Started PUT "/orders/1/autoparts/15" for ::1 at 2020-02-13 18:13:17 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"15", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.5ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:13:17.843965"], ["id", 15]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 2.2ms | Allocations: 4281)
+
+
+Started PUT "/orders/1/autoparts/16" for ::1 at 2020-02-13 18:13:19 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"16", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.3ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:13:19.585263"], ["id", 16]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (37.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 45ms (Views: 0.2ms | ActiveRecord: 38.3ms | Allocations: 4279)
+
+
+Started PUT "/orders/1/autoparts/17" for ::1 at 2020-02-13 18:13:21 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"17", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 17], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.4ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:13:21.694060"], ["id", 17]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 4.7ms | Allocations: 4279)
+
+
+Started PUT "/orders/1/autoparts/18" for ::1 at 2020-02-13 18:13:23 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"18", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.5ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:13:23.408629"], ["id", 18]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 2.1ms | Allocations: 4279)
+
+
+Started PUT "/orders/1/autoparts/19" for ::1 at 2020-02-13 18:13:25 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"19", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.4ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:13:25.198511"], ["id", 19]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (140.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 149ms (Views: 0.4ms | ActiveRecord: 141.1ms | Allocations: 4295)
+
+
+Started GET "/orders/1/autoparts/19" for ::1 at 2020-02-13 18:13:33 -0500
+Processing by AutopartsController#show as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"19", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 2150)
+
+
+Started PUT "/orders/1/autoparts/20" for ::1 at 2020-02-13 18:14:03 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"20", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.3ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:14:03.572064"], ["id", 20]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 4278)
+
+
+Started PUT "/orders/1/autoparts/21" for ::1 at 2020-02-13 18:14:05 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"21", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.6ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:14:05.979814"], ["id", 21]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (77.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 91ms (Views: 0.5ms | ActiveRecord: 79.1ms | Allocations: 4296)
+
+
+Started PUT "/orders/1/autoparts/22" for ::1 at 2020-02-13 18:14:07 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"22", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+[31mUnpermitted parameters: :order_id, :id, :autopart[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[36mAutopart Update (0.5ms)[0m  [1m[33mUPDATE "autoparts" SET "price" = ?, "updated_at" = ? WHERE "autoparts"."id" = ?[0m  [["price", 100.99], ["updated_at", "2020-02-13 23:14:07.964768"], ["id", 22]]
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/autoparts_controller.rb:29:in `update'
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 2.3ms | Allocations: 4278)
+
+
+Started PUT "/orders/1/autoparts/23" for ::1 at 2020-02-13 18:14:10 -0500
+Processing by AutopartsController#update as */*
+  Parameters: {"price"=>100.99, "order_id"=>"1", "id"=>"23", "autopart"=>{"price"=>100.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+  [1m[36mAutopart Load (0.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts" WHERE "autoparts"."order_id" = ? AND "autoparts"."id" = ? LIMIT ?[0m  [["order_id", 1], ["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:50:in `set_order_autopart'
+Completed 404 Not Found in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 2062)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-13 18:18:18 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.7ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.7ms | Allocations: 4574)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-13 23:06:26 -0500
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (37.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (14.6ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 119ms (Views: 18.8ms | ActiveRecord: 15.9ms | Allocations: 11385)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 10:55:07 -0500
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 764ms (Views: 11.1ms | ActiveRecord: 1.7ms | Allocations: 10920)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 10:55:08 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 140ms (Views: 55.4ms | ActiveRecord: 1.9ms | Allocations: 7558)
+
+
+Started GET "/94a71a733809fcbbf343.hot-update.json" for ::1 at 2020-02-14 10:56:13 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/94a71a733809fcbbf343.hot-update.json"):
+  
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/orders" for ::1 at 2020-02-14 10:56:13 -0500
+Processing by OrdersController#index as HTML
+Completed 422 Unprocessable Entity in 23ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1833)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 10:56:34 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.6ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 163ms (Views: 16.5ms | ActiveRecord: 1.6ms | Allocations: 10409)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 10:58:15 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.4ms | Allocations: 4534)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:14:12 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (7.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 16ms (Views: 8.7ms | ActiveRecord: 7.3ms | Allocations: 4552)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:14:23 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 11:15:52 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "authentication"=>{"email"=>"", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (211.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 401 Unauthorized in 216ms (Views: 0.4ms | ActiveRecord: 211.9ms | Allocations: 797)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:17:54 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:18:01 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 11ms (Views: 9.7ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:26:40 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 28ms (Views: 27.3ms | ActiveRecord: 0.4ms | Allocations: 4544)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:30:40 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:32:10 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 14ms (Views: 13.4ms | ActiveRecord: 0.4ms | Allocations: 4519)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:32:12 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:32:17 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:33:34 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:33:43 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:33:56 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.9ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:34:03 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:34:08 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:34:16 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:34:39 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:35:25 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:35:27 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.9ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:35:51 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 17ms (Views: 16.5ms | ActiveRecord: 0.2ms | Allocations: 4520)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 11:36:25 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 616ms (Views: 0.8ms | ActiveRecord: 0.6ms | Allocations: 2053)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:36:44 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 11:37:13 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 591ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 2026)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:39:49 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:40:47 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 11:41:57 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 12:17:42 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 605ms (Views: 2.4ms | ActiveRecord: 0.7ms | Allocations: 2049)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:38:45 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 11ms (Views: 9.9ms | ActiveRecord: 0.4ms | Allocations: 4541)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:39:04 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:39:15 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:39:43 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:39:50 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:39:52 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:39:57 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.3ms | Allocations: 4520)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:40:09 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 6.0ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:40:21 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:40:22 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:41:58 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:42:06 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:42:09 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 12:42:15 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 631ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 2048)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:42:43 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 10ms (Views: 9.4ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:42:55 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 12:43:01 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 606ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 2028)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:43:30 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:43:35 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:43:37 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:43:55 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.6ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:43:58 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.3ms | Allocations: 4520)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:44:04 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 12:44:08 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 634ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 2026)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:44:44 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:45:00 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 9ms (Views: 8.7ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:45:12 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:45:13 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:45:30 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:45:32 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 12:45:38 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 640ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 2026)
+
+
+Started PUT "/orders" for ::1 at 2020-02-14 12:53:19 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [PUT] "/orders"):
+  
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/orders" for ::1 at 2020-02-14 12:53:34 -0500
+Processing by OrdersController#index as */*
+  Parameters: {"price"=>100.99, "order"=>{}}
+  [1m[36mUser Load (15.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 25ms (Views: 5.0ms | ActiveRecord: 15.6ms | Allocations: 1679)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:58:22 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.5ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 11ms (Views: 9.8ms | ActiveRecord: 0.5ms | Allocations: 4540)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:59:33 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:59:42 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.5ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 60ms (Views: 59.5ms | ActiveRecord: 0.5ms | Allocations: 4520)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 12:59:58 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:00:07 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:44:32 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (14.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 33ms (Views: 16.8ms | ActiveRecord: 14.2ms | Allocations: 4541)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:44:52 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:46:51 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.9ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 13:46:55 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 603ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 2052)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 13:47:05 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 9ms (Views: 4.2ms | ActiveRecord: 0.8ms | Allocations: 1675)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:47:27 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.5ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.5ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 13:47:33 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 596ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 2025)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 13:47:37 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 4ms (Views: 2.4ms | ActiveRecord: 0.3ms | Allocations: 1636)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:48:36 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 13:48:39 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 580ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 2029)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 13:48:41 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 0.4ms | Allocations: 1636)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:50:49 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 13:50:55 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 654ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 2026)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 13:51:00 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.2ms | Allocations: 1640)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:52:14 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:52:30 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:52:47 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 13ms (Views: 11.9ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:52:50 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.5ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 12ms (Views: 11.2ms | ActiveRecord: 0.5ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:53:00 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 10ms (Views: 9.5ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:53:10 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 13:53:13 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 618ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 2028)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 13:53:28 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 612ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 2026)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 13:53:33 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.4ms | Allocations: 1636)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:54:07 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 13:54:13 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 654ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 2025)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 13:54:15 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.4ms | Allocations: 1636)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:55:00 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 13:55:04 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 13:55:12 -0500
+Processing by OrdersController#index as */*
+  Parameters: {"price"=>100.99, "order"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.5ms | Allocations: 1638)
+
+
+Started POST "/orders" for ::1 at 2020-02-14 13:56:40 -0500
+Processing by OrdersController#create as */*
+  Parameters: {"shipping_Address"=>"15 Main street. NY", "order"=>{"shipping_Address"=>"15 Main street. NY"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+[31mUnpermitted parameter: :order[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:12:in `create'
+  [1m[36mOrder Create (130.3ms)[0m  [1m[32mINSERT INTO "orders" ("shipping_Address", "created_at", "updated_at", "created_by") VALUES (?, ?, ?, ?)[0m  [["shipping_Address", "15 Main street. NY"], ["created_at", "2020-02-14 18:56:40.327390"], ["updated_at", "2020-02-14 18:56:40.327390"], ["created_by", "1"]]
+  ↳ app/controllers/orders_controller.rb:12:in `create'
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:12:in `create'
+Completed 200 OK in 146ms (Views: 0.3ms | ActiveRecord: 132.6ms | Allocations: 3576)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 13:56:46 -0500
+Processing by OrdersController#index as */*
+  Parameters: {"shipping_Address"=>"15 Main street. NY", "order"=>{"shipping_Address"=>"15 Main street. NY"}}
+  [1m[36mUser Load (33.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 38ms (Views: 2.0ms | ActiveRecord: 33.7ms | Allocations: 1777)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 13:56:53 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 602ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 2026)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 13:56:55 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (53.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 59ms (Views: 2.9ms | ActiveRecord: 53.8ms | Allocations: 1773)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 14:33:06 -0500
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (73.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 92ms (Views: 16.6ms | ActiveRecord: 73.1ms | Allocations: 4541)
+
+
+Started POST "/signup" for ::1 at 2020-02-14 14:33:56 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"Maleha", "email"=>"malehahasan@gmail.com", "password"=>"[FILTERED]", "address"=>"121 Jackson Drive", "user"=>{"name"=>"Maleha", "email"=>"malehahasan@gmail.com", "address"=>"121 Jackson Drive"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (19.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "malehahasan@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Create (35.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "address", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Maleha"], ["email", "malehahasan@gmail.com"], ["address", "121 Jackson Drive"], ["password_digest", "$2a$12$0N6Zx9rX.GuYMxQWem80Me.hYZ2uXzL9unsWPGVPIisBgKUrw/dXC"], ["created_at", "2020-02-14 19:33:58.595282"], ["updated_at", "2020-02-14 19:33:58.595282"]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "malehahasan@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "malehahasan@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (Duration: 9.4ms | Allocations: 223)
+UserMailer#welcome_email: processed outbound mail in 75.6ms
+Delivered mail 5e46f6293c9c_be23fc3b475ba901699@macdeMacBook-Pro-2.local.mail (1694.2ms)
+Date: Fri, 14 Feb 2020 14:34:00 -0500
+From: postmaster.iedb@gmail.com
+To: malehahasan@gmail.com
+Message-ID: <5e46f6293c9c_be23fc3b475ba901699@macdeMacBook-Pro-2.local.mail>
+Subject: Welcome Maleha
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Hi Maleha</h1>
+<p>Welcome to the Pick Auto Parts</p>
+<p>We hope to start helping you with your shopping</p>
+<br>
+<h5>Henry Dozie</h5>
+  </body>
+</html>
+
+Completed 201 Created in 4405ms (Views: 0.6ms | ActiveRecord: 58.1ms | Allocations: 27118)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 14:34:02 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (16.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "2"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 22ms (Views: 3.8ms | ActiveRecord: 16.2ms | Allocations: 1536)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 14:41:33 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (25.7ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "2"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 33ms (Views: 3.4ms | ActiveRecord: 26.1ms | Allocations: 1537)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 14:43:45 -0500
+Started GET "/orders" for ::1 at 2020-02-14 14:43:45 -0500
+Processing by PublicController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mAutopart Load (10.1ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Processing by OrdersController#index as HTML
+Completed 200 OK in 23ms (Views: 12.6ms | ActiveRecord: 10.1ms | Allocations: 6163)
+
+
+Completed 422 Unprocessable Entity in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 14:43:54 -0500
+Started GET "/orders" for ::1 at 2020-02-14 14:43:54 -0500
+Processing by PublicController#index as HTML
+Processing by OrdersController#index as HTML
+  [1m[36mAutopart Load (0.7ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 0.7ms | Allocations: 4696)
+
+
+Completed 422 Unprocessable Entity in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:20:40 -0500
+Started GET "/orders" for ::1 at 2020-02-14 15:20:40 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PublicController#index as HTML
+Processing by OrdersController#index as HTML
+  [1m[36mAutopart Load (0.6ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+Completed 422 Unprocessable Entity in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 19ms (Views: 15.5ms | ActiveRecord: 0.6ms | Allocations: 4830)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 15:20:40 -0500
+Processing by OrdersController#index as HTML
+Completed 422 Unprocessable Entity in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:20:47 -0500
+Started GET "/orders" for ::1 at 2020-02-14 15:20:47 -0500
+Processing by PublicController#index as HTML
+Processing by OrdersController#index as HTML
+Completed 422 Unprocessable Entity in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+  [1m[36mAutopart Load (0.5ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.5ms | Allocations: 4831)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:21:12 -0500
+Started GET "/orders" for ::1 at 2020-02-14 15:21:12 -0500
+Processing by PublicController#index as HTML
+Processing by OrdersController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+Completed 422 Unprocessable Entity in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 10ms (Views: 9.9ms | ActiveRecord: 0.2ms | Allocations: 4806)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:21:24 -0500
+Started GET "/orders" for ::1 at 2020-02-14 15:21:24 -0500
+Processing by PublicController#index as HTML
+Processing by OrdersController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+Completed 422 Unprocessable Entity in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.2ms | Allocations: 4793)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 15:25:31 -0500
+Started GET "/autoparts" for ::1 at 2020-02-14 15:25:31 -0500
+Processing by OrdersController#index as HTML
+Processing by PublicController#index as HTML
+Completed 422 Unprocessable Entity in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.9ms | ActiveRecord: 0.2ms | Allocations: 4666)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 15:26:50 -0500
+Started GET "/autoparts" for ::1 at 2020-02-14 15:26:50 -0500
+Processing by OrdersController#index as HTML
+Processing by PublicController#index as HTML
+Completed 422 Unprocessable Entity in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.2ms | Allocations: 4646)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:26:56 -0500
+Started GET "/orders" for ::1 at 2020-02-14 15:26:56 -0500
+Processing by OrdersController#index as HTML
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+Completed 422 Unprocessable Entity in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.3ms | Allocations: 4646)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:27:03 -0500
+Started GET "/orders" for ::1 at 2020-02-14 15:27:03 -0500
+Processing by PublicController#index as HTML
+Processing by OrdersController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+Completed 422 Unprocessable Entity in 0ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 107)
+
+
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.3ms | Allocations: 4807)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:27:12 -0500
+Started GET "/orders" for ::1 at 2020-02-14 15:27:12 -0500
+Processing by PublicController#index as HTML
+Processing by OrdersController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+Completed 422 Unprocessable Entity in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 106)
+
+
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 4806)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:27:51 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:28:02 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:29:14 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 15:29:31 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 650ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 2049)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 15:30:03 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 619ms (Views: 0.9ms | ActiveRecord: 0.3ms | Allocations: 2029)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:30:04 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 15:30:18 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.4ms | Allocations: 1812)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 15:30:19 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.3ms | Allocations: 1773)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:30:22 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:30:41 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started POST "/signup" for ::1 at 2020-02-14 15:36:37 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"", "email"=>"", "password"=>"[FILTERED]", "address"=>"", "user"=>{"name"=>"", "email"=>"", "address"=>""}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+Completed 422 Unprocessable Entity in 416ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 5244)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 15:36:50 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 648ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 2056)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:36:51 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.3ms | Allocations: 4538)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 15:37:39 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 636ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 2028)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:37:39 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 15:39:11 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 0.6ms | Allocations: 1812)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 15:41:13 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 0.4ms | Allocations: 1773)
+
+
+Started GET "/orders" for ::1 at 2020-02-14 15:41:19 -0500
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."created_by" = ?[0m  [["created_by", "1"]]
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 1773)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:41:25 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-14 15:41:30 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"doziewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "doziewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 679ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 2025)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:41:31 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:41:46 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 9ms (Views: 7.9ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:48:07 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.9ms | ActiveRecord: 0.3ms | Allocations: 4541)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:48:22 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-14 15:49:01 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+

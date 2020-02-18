@@ -8,6 +8,14 @@ header {
   flex-direction: row;
   /* background: #232F3E; */
 }
+
+.slider{
+  /* z-index: -1; */
+}
+
+a{
+  text-decoration: none;
+}
 .logo {
   border: 5px solid red;
   width: 7.6vw;
@@ -46,6 +54,23 @@ header {
   height: 4.5vh;
   border-radius: 0.7em;
 }
+
+.leftSidebar{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  width: 16vw;
+  padding: 2vw 2vh;
+  background-color: aliceblue;
+  /* margin-top: 1vh; */
+}
+
+.rightSideBar{
+  /* border: 2px solid red; */
+  height: 40vh;
+  width: 25vw;
+  background-color: aliceblue;
+}
 button {
   width: 6.5vw;
   height: 5.03vh;
@@ -61,21 +86,39 @@ button {
   justify-content: flex-end;
 }
 
+
+
+.parts{
+  /* background-color: red; */
+  border: 3px solid red;
+  
+  display: flex;
+}
+.partsContainer{
+  background-color: aliceblue;
+  
+}
+
 .autos {
-  width: 65vw;
+  width: 60vw;
   margin: 10vh auto;
+  
+  /* background-color: rosybrown; */
 }
 
 img {
-  height: 20vh;
+  height: 28vh;
+  width: 18vw;
   margin: 0 auto;
   /* border: 2px solid red; */
+  object-fit: contain;
+  
 }
 
 .img {
   border-right: 1px solid #f6f6f6;
-  width: 20vw;
-  height: 25vh;
+  width: 18vw;
+  height: 26vh;
   display: flex;
 }
 
@@ -83,6 +126,12 @@ img {
   display: flex;
   flex-direction: row;
   border: 1px solid #f6f6f6;
+  background-color: white;
+}
+
+.partdesc{
+  padding: 1vw 2vw;
+  height: 24.5vh;
 }
 
 .logout > button {
@@ -91,6 +140,16 @@ img {
 
 .fas {
   color: red;
+}
+
+.cart{
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid red; */
+}
+
+.cart > h3{
+  margin-top: 0;
 }
 
 .loginPage {
