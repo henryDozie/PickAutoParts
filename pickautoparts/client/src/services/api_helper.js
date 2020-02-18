@@ -55,6 +55,18 @@ export const postOrder = async (postData) => {
   return resp.data;
 }
 
+//PASSWORD FORGOT
+export const forgotUser = async email => {
+  const resp = await api.post(`password/forgot`, email);
+  return resp.data;
+};
+
+//PASSWORD RESET 
+export const resetUser = async resetData => {
+  const resp = await api.post(`password/reset`, resetData);
+  return resp.data;
+};
+
 // UPDATE ORDER
 export const putOrder = async (id, postData) => {
   const resp = await api.put(`/orders/${id}`, postData);
@@ -67,6 +79,13 @@ export const putOrder = async (id, postData) => {
 // GET ALL ORDERS
 export const indexAutoparts = async () => {
   const resp = await api.get('/autoparts');
+  return resp.data;
+}
+
+// GET ONE AUTOPART
+export const showAutopart = async (id) => {
+  console.log("Show ind autopart");
+  const resp = await api.get(`/autoparts/single/${id}`);
   return resp.data;
 }
 

@@ -40,7 +40,10 @@ class LoginForm extends Component {
             onChange={this.handleChange}
           />
           <button>Submit</button>
-          <Link to="/register">Register</Link>
+          {/* <Link to="/register">Register</Link> */}
+          <Link to="/forgotpassword">
+            <button>Forgot Password</button>
+          </Link>
         </form>
       </div>
     );

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
 
     get 'autoparts', to: 'public#index'
+    get 'autoparts/single/:id', to: 'public#show'
 
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
