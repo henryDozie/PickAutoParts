@@ -12,7 +12,8 @@ class Header extends Component {
       password: "",
       currentUser: false,
       errorText: "",
-      loggedIn: false
+      loggedIn: false,
+      count: 0
     };
   }
   componentDidMount() {
@@ -28,30 +29,39 @@ class Header extends Component {
     }
   }
 
-  profileSubmit = async (e) => {
+  increCount = async (e) => {
     e.preventDefault()
     const resp = await indexOrders()
-    console.log(resp);
-    
-    const smthing = resp.filter((resp) => resp.created_by === 1)
-    
-    console.log(smthing);
-    
-     
+    const count = resp.length
+    this.setState({ count })
   }
+
+  profileSubmit = async e => {
+    e.preventDefault();
+    const resp = await indexOrders();
+    console.log(resp);
+
+    const smthing = resp.filter(resp => resp.created_by === 1);
+
+    console.log(smthing);
+  };
 
   render() {
     console.log(this.state.currentUser);
     return (
       <div>
         <header>
-          <Link to="/home"><div className="logo"></div></Link>
+          <Link to="/home">
+            <div className="logo"></div>
+          </Link>
           <div className="headRegion">
             <div className="loginAndSignUp">
               <div className="login">
                 {this.props.currentUser ? (
                   <div className="logout">
-                    <button onClick={e => this.props.handleLogout(e)}><h2>Logout</h2></button>
+                    <button onClick={e => this.props.handleLogout(e)}>
+                      <h2>Logout</h2>
+                    </button>
                   </div>
                 ) : (
                   <Link to="/login">
@@ -72,16 +82,20 @@ class Header extends Component {
             {/* )} */}
             <div className="cartAndBar">
               <Form handleLogin={this.handleLogin} />
-              {this.props.currentUser &&
+              {this.props.currentUser && (
                 <div className="profileButton">
                   <button onClick={e => this.profileSubmit(e)}>
                     {/* <i className="fas fa-user fa-3x"></i> */}
                     <h2>Profile</h2>
                   </button>
-                </div>}
+                </div>
+              )}
+              <div className="cart">
                 <Link to="/cart">
-                <i className="fas fa-shopping-cart fa-3x"></i>
+                  <i className="fas fa-shopping-cart fa-3x"></i>
                 </Link>
+                <h3 className="cart">{this.state.count}</h3>
+              </div>
             </div>
           </div>
         </header>
