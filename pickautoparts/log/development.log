@@ -24869,3 +24869,113 @@ Processing by PublicController#index as HTML
 Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.3ms | Allocations: 4517)
 
 
+  [1m[35m (38.1ms)[0m  [1m[35mCREATE DATABASE "db/development"."sqlite3" ENCODING = 'utf8'[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE DATABASE "db/development"."postgresql" ENCODING = 'utf8'[0m
+  [1m[35m (1876.5ms)[0m  [1m[35mCREATE DATABASE "db/development_pg" ENCODING = 'utf8'[0m
+  [1m[35m (494.5ms)[0m  [1m[35mCREATE DATABASE "db/test_pg" ENCODING = 'utf8'[0m
+  [1m[35mSQL (42.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "autoparts" CASCADE[0m
+  [1m[35m (58.7ms)[0m  [1m[35mCREATE TABLE "autoparts" ("id" bigserial primary key, "name" character varying, "description" character varying, "img_url" character varying, "order_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "price" float)[0m
+  [1m[35m (9.8ms)[0m  [1m[35mCREATE  INDEX  "index_autoparts_on_order_id" ON "autoparts"  ("order_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "brands" CASCADE[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "brands" ("id" bigserial primary key, "name" character varying, "img_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "created_by" character varying)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "orders" CASCADE[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "shipping_Address" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "created_by" character varying)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews" CASCADE[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" bigserial primary key, "review" character varying, "rating" integer, "autopart_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "created_by" character varying)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_autopart_id" ON "reviews"  ("autopart_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "address" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp)[0m
+  [1m[35m (95.6ms)[0m  [1m[35mALTER TABLE "autoparts" ADD CONSTRAINT "fk_rails_9f6e4a4ade"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "reviews" ADD CONSTRAINT "fk_rails_9bad11e0d6"
+FOREIGN KEY ("autopart_id")
+  REFERENCES "autoparts" ("id")
+[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (41.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200213223320)[0m
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200210215720),
+(20200210215729),
+(20200210215735),
+(20200210215754),
+(20200210215953),
+(20200211022143),
+(20200211144153),
+(20200211144840),
+(20200211161132),
+(20200211163426),
+(20200211165755),
+(20200211175809),
+(20200211191435),
+(20200211192809);
+
+[0m
+  [1m[35m (24.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-02-20 14:22:12.238355"], ["updated_at", "2020-02-20 14:22:12.238355"]]
+  [1m[35m (40.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "75c74fd54c85d5665d45641f1bcd0c3279635f2b"], ["created_at", "2020-02-20 14:22:12.291628"], ["updated_at", "2020-02-20 14:22:12.291628"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "autoparts" CASCADE[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "autoparts" ("id" bigserial primary key, "name" character varying, "description" character varying, "img_url" character varying, "order_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "price" float)[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE  INDEX  "index_autoparts_on_order_id" ON "autoparts"  ("order_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "brands" CASCADE[0m
+  [1m[35m (41.3ms)[0m  [1m[35mCREATE TABLE "brands" ("id" bigserial primary key, "name" character varying, "img_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "created_by" character varying)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "orders" CASCADE[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "shipping_Address" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "created_by" character varying)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews" CASCADE[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" bigserial primary key, "review" character varying, "rating" integer, "autopart_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "created_by" character varying)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_autopart_id" ON "reviews"  ("autopart_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "address" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "autoparts" ADD CONSTRAINT "fk_rails_9f6e4a4ade"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "reviews" ADD CONSTRAINT "fk_rails_9bad11e0d6"
+FOREIGN KEY ("autopart_id")
+  REFERENCES "autoparts" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200213223320)[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200210215720),
+(20200210215729),
+(20200210215735),
+(20200210215754),
+(20200210215953),
+(20200211022143),
+(20200211144153),
+(20200211144840),
+(20200211161132),
+(20200211163426),
+(20200211165755),
+(20200211175809),
+(20200211191435),
+(20200211192809);
+
+[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-02-20 14:22:12.483306"], ["updated_at", "2020-02-20 14:22:12.483306"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-02-20 14:22:12.489646"], ["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "75c74fd54c85d5665d45641f1bcd0c3279635f2b"], ["created_at", "2020-02-20 14:22:12.494724"], ["updated_at", "2020-02-20 14:22:12.494724"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
