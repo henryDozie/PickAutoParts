@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ResetPassword from "./components/resetPassword";
 import ForgotPassword from "./components/forgotPassword";
-import { registerUser, loginUser, verifyUser } from "./services/api_helper";
+import { registerUser, loginUser, verifyUser, postAutopart } from "./services/api_helper";
 // import logo from "./logo.svg";
 import Header from "./components/header";
 import { Route, withRouter } from "react-router-dom";
@@ -30,6 +30,7 @@ class App extends Component {
   addToCart = (e, autoparts) => {
     verifyUser();
     e.preventDefault();
+    postAutopart(this.state.currentUser.id, autoparts)
     let cartFlag = true;
     let newCartList = this.state.cart;
     for (let i = 0; i < newCartList.length; i++) {
@@ -58,12 +59,6 @@ class App extends Component {
     });
   };
 
-  componentDidMount() {
-    const cart = localStorage.getItem('cart')
-    console.log(cart[0]);
-    
-  }
-
   handleRegister = async (e, registerData) => {
     e.preventDefault();
     const currentUser = await registerUser(registerData);
@@ -81,6 +76,9 @@ class App extends Component {
     const currentUser = await loginUser(loginData);
     console.log(currentUser);
     this.setState({ currentUser });
+    // localStorage.setItem("authToken");
+    // localStorage.setItem("name");
+    // localStorage.setItem("email");
     this.props.history.push("/home");
   };
 
@@ -94,6 +92,19 @@ class App extends Component {
     localStorage.removeItem("email");
   };
 
+  componentDidMount() {
+    verifyUser();
+    if (localStorage.getItem("authToken")) {
+      const name = localStorage.getItem("name");
+      const email = localStorage.getItem("email");
+      const user = { name, email };
+      user &&
+        this.setState({
+          currentUser: user
+        });
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -105,7 +116,10 @@ class App extends Component {
 
         <Route
           path="/home"
-          render={() => <AutopartContainer handleClick={this.addToCart} />}
+          render={() => <AutopartContainer
+            handleClick={this.addToCart}
+            currentUser={this.state.currentUser}
+          />}
         />
         <Route
           path="/login"
