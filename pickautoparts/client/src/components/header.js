@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Form from "./searchform";
-import { verifyUser, indexOrders } from "../services/api_helper";
+import { indexOrders } from "../services/api_helper";
 import { Link, withRouter } from "react-router-dom";
+import logo from "../images/wheel2.gif";
 
 class Header extends Component {
   constructor(props) {
@@ -15,18 +16,6 @@ class Header extends Component {
       loggedIn: false,
 
     };
-  }
-  componentDidMount() {
-    verifyUser();
-    if (localStorage.getItem("authToken")) {
-      const name = localStorage.getItem("name");
-      const email = localStorage.getItem("email");
-      const user = { name, email };
-      user &&
-        this.setState({
-          currentUser: user
-        });
-    }
   }
 
   increCount = async (e) => {
@@ -47,12 +36,11 @@ class Header extends Component {
   };
 
   render() {
-    console.log(this.state.currentUser);
     return (
       <div>
         <header>
           <Link to="/home">
-            <div className="logo"> <img src="../images/logo.png"/></div>
+            <div className="logo"> <img src={logo} alt="loading.." className="logoImg"/></div>
           </Link>
           <div className="headRegion">
             <div className="loginAndSignUp">
@@ -84,7 +72,7 @@ class Header extends Component {
               <Form handleLogin={this.handleLogin} />
               {this.props.currentUser && (
                 <div className="profileButton">
-                  <button onClick={e => this.profileSubmit(e)}>
+                  <button onClick={e => this.profileSubmit(e)} className="profileButton">
                     {/* <i className="fas fa-user fa-3x"></i> */}
                     <h2>Profile</h2>
                   </button>
