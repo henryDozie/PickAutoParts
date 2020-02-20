@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { indexAutoparts } from "../services/api_helper";
-import SingleAutopart from "./singleAutopart";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Horizontal from "./range";
 import AutoplaySlider from "./carousel";
 
@@ -30,12 +29,11 @@ class AutopartContainer extends Component {
   readAllAutoparts = async () => {
     const autoparts = await indexAutoparts();
     this.setState({ autoparts });
-    console.log(autoparts);
   };
 
-  render() {
+  render() {    
     return (
-      <div className="parts">
+      <div className="partsContainer">
         <div className="leftSidebar">
           <h3>Categories</h3>
           <label class="container">
@@ -134,14 +132,14 @@ class AutopartContainer extends Component {
           </div>
         </div>
 
-        <div className="partsContainer">
+        <div className="parts">
           <div className="autos">
             {this.state.apiLoaded &&
               this.state.autoparts.map(autopart => (
                 <div className="autopartCard">
                   <div className="img">
                     <Link to={`/autoparts/single/${autopart.id}`}>
-                      <img src={autopart.img_url} alt="loading"></img>
+                      <img src={autopart.img_url} alt="loading" className="autoImg"></img>
                     </Link>
                   </div>
                   <div className="partdesc">
@@ -154,9 +152,18 @@ class AutopartContainer extends Component {
                     <span>
                       <h4>$ {autopart.price}</h4>
                     </span>
-                    <button onClick={e => this.props.handleClick(e, autopart)}>
-                      <h3>Add to Cart</h3>
-                    </button>
+                    {this.props.currentUser ? (
+                      <button
+                        onClick={e => this.props.handleClick(e, autopart)}
+                        className="orderButton"
+                      >
+                        <h3>Add to Cart</h3>
+                      </button>
+                    ) : (
+                      <Link to="/login">
+                        <button className="orderButton"><h3>Login to Shop</h3></button>
+                      </Link>
+                    )}
                   </div>
                 </div>
               ))}
@@ -167,6 +174,7 @@ class AutopartContainer extends Component {
           {this.props.currentUser ? (
             <div className="rightSideBarMap">
               <iframe
+                title="You are here"
                 id="googleMaps"
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1511.2591469244708!2d-73.987004!3d40.7506239!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa89dbb19d96569cc!2sKeens%20Steakhouse!5e0!3m2!1sen!2sus!4v1580232117513!5m2!1sen!2sus"
                 frameborder="0"
@@ -175,7 +183,8 @@ class AutopartContainer extends Component {
             </div>
           ) : (
             <div className="rightSideBarMap">
-              <iframe
+                <iframe
+                title="You are here"
                 id="googleMaps"
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1511.2591469244708!2d-73.987004!3d40.7506239!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa89dbb19d96569cc!2sKeens%20Steakhouse!5e0!3m2!1sen!2sus!4v1580232117513!5m2!1sen!2sus"
                 frameborder="0"
