@@ -24987,3 +24987,11 @@ Processing by PublicController#index as HTML
 Completed 200 OK in 152ms (Views: 12.9ms | ActiveRecord: 135.7ms | Allocations: 4541)
 
 
+Started GET "/" for ::1 at 2020-02-20 09:54:08 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/doziewurum/.rvm/gems/ruby-2.6.4/gems/railties-6.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/doziewurum/.rvm/gems/ruby-2.6.4/gems/railties-6.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 53.8ms | Allocations: 195)
+Completed 200 OK in 140ms (Views: 55.0ms | ActiveRecord: 0.0ms | Allocations: 1262)
+
+
