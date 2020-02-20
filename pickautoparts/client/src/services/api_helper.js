@@ -90,8 +90,8 @@ export const showAutopart = async (id) => {
 }
 
 //POST THE Autoparts
-export const postAutopart = async (id, pid, postData) => {
-  const resp = await api.post(`/orders/${id}/autoparts/${pid}`, postData);
+export const postAutopart = async (id, postData) => {
+  const resp = await api.post(`/orders/${id}/autoparts`, postData);
   return resp.data;
 }
 
