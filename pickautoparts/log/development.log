@@ -24608,3 +24608,264 @@ Processing by PublicController#index as HTML
 Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.2ms | Allocations: 4517)
 
 
+Started GET "/autoparts" for ::1 at 2020-02-20 08:43:10 -0500
+  [1m[35m (72.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (24.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (1.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 73ms (Views: 13.7ms | ActiveRecord: 2.0ms | Allocations: 11367)
+
+
+Started POST "/auth/login" for ::1 at 2020-02-20 08:43:56 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"hcewurum@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"hcewurum@gmail.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication[0m
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mUser Load (98.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hcewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hcewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+[31mUnpermitted parameter: :authentication[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hcewurum@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `authenticate'
+Completed 200 OK in 1036ms (Views: 0.7ms | ActiveRecord: 99.0ms | Allocations: 10039)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:43:58 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started POST "/orders/4/autoparts" for ::1 at 2020-02-20 08:44:28 -0500
+Processing by AutopartsController#create as HTML
+  Parameters: {"id"=>1, "name"=>"Universal Gear Stick", "description"=>"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/oe0WEhA.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:43:29.026Z", "updated_at"=>"2020-02-18T17:13:21.918Z", "price"=>199, "autopart"=>{"id"=>1, "name"=>"Universal Gear Stick", "description"=>"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/oe0WEhA.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:43:29.026Z", "updated_at"=>"2020-02-18T17:13:21.918Z", "price"=>199}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (15.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+Completed 404 Not Found in 48ms (Views: 0.2ms | ActiveRecord: 15.9ms | Allocations: 2853)
+
+
+Started POST "/orders/4/autoparts" for ::1 at 2020-02-20 08:44:31 -0500
+Processing by AutopartsController#create as HTML
+  Parameters: {"id"=>1, "name"=>"Universal Gear Stick", "description"=>"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/oe0WEhA.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:43:29.026Z", "updated_at"=>"2020-02-18T17:13:21.918Z", "price"=>199, "autopart"=>{"id"=>1, "name"=>"Universal Gear Stick", "description"=>"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/oe0WEhA.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:43:29.026Z", "updated_at"=>"2020-02-18T17:13:21.918Z", "price"=>199}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+Completed 404 Not Found in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1251)
+
+
+Started POST "/orders/4/autoparts" for ::1 at 2020-02-20 08:44:31 -0500
+Processing by AutopartsController#create as HTML
+  Parameters: {"id"=>1, "name"=>"Universal Gear Stick", "description"=>"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/oe0WEhA.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:43:29.026Z", "updated_at"=>"2020-02-18T17:13:21.918Z", "price"=>199, "autopart"=>{"id"=>1, "name"=>"Universal Gear Stick", "description"=>"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/oe0WEhA.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:43:29.026Z", "updated_at"=>"2020-02-18T17:13:21.918Z", "price"=>199}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+Completed 404 Not Found in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1251)
+
+
+Started POST "/orders/4/autoparts" for ::1 at 2020-02-20 08:44:33 -0500
+Processing by AutopartsController#create as HTML
+  Parameters: {"id"=>2, "name"=>"Break Pads", "description"=>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/nJwbXep.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:44:37.083Z", "updated_at"=>"2020-02-18T17:14:16.368Z", "price"=>59.99, "autopart"=>{"id"=>2, "name"=>"Break Pads", "description"=>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/nJwbXep.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:44:37.083Z", "updated_at"=>"2020-02-18T17:14:16.368Z", "price"=>59.99}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+Completed 404 Not Found in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 1237)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:44:43 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started POST "/orders/4/autoparts" for ::1 at 2020-02-20 08:44:49 -0500
+Processing by AutopartsController#create as HTML
+  Parameters: {"id"=>2, "name"=>"Break Pads", "description"=>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/nJwbXep.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:44:37.083Z", "updated_at"=>"2020-02-18T17:14:16.368Z", "price"=>59.99, "autopart"=>{"id"=>2, "name"=>"Break Pads", "description"=>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/nJwbXep.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:44:37.083Z", "updated_at"=>"2020-02-18T17:14:16.368Z", "price"=>59.99}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+Completed 404 Not Found in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1237)
+
+
+Started POST "/orders/4/autoparts" for ::1 at 2020-02-20 08:44:50 -0500
+Processing by AutopartsController#create as HTML
+  Parameters: {"id"=>1, "name"=>"Universal Gear Stick", "description"=>"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/oe0WEhA.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:43:29.026Z", "updated_at"=>"2020-02-18T17:13:21.918Z", "price"=>199, "autopart"=>{"id"=>1, "name"=>"Universal Gear Stick", "description"=>"is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", "img_url"=>"https://imgur.com/oe0WEhA.png", "order_id"=>"4", "created_at"=>"2020-02-13T20:43:29.026Z", "updated_at"=>"2020-02-18T17:13:21.918Z", "price"=>199}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/autoparts_controller.rb:46:in `set_order'
+Completed 404 Not Found in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1237)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:45:33 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.3ms | Allocations: 4521)
+
+
+Started POST "/signup" for ::1 at 2020-02-20 08:46:39 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"Nolan", "email"=>"nolanrgiles@gmail.com", "password"=>"[FILTERED]", "address"=>"121 MAIN DRIVE", "user"=>{"name"=>"Nolan", "email"=>"nolanrgiles@gmail.com", "address"=>"121 MAIN DRIVE"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "nolanrgiles@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Create (1530.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "address", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Nolan"], ["email", "nolanrgiles@gmail.com"], ["address", "121 MAIN DRIVE"], ["password_digest", "$2a$12$OzFK.A2xE6gaA9X9.D0nzurDV6Pz/Ku7GC8E1wrPwEuFkEn3KXavq"], ["created_at", "2020-02-20 13:46:39.963138"], ["updated_at", "2020-02-20 13:46:39.963138"]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[35m (288.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "nolanrgiles@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "nolanrgiles@gmail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Started POST "/signup" for ::1 at 2020-02-20 08:46:43 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"Nolan", "email"=>"nolanrgiles@gmail.com", "password"=>"[FILTERED]", "address"=>"121 MAIN DRIVE", "user"=>{"name"=>"Nolan", "email"=>"nolanrgiles@gmail.com", "address"=>"121 MAIN DRIVE"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "nolanrgiles@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+Completed 422 Unprocessable Entity in 2018ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 12313)
+
+
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (Duration: 41.0ms | Allocations: 223)
+UserMailer#welcome_email: processed outbound mail in 358.8ms
+Delivered mail 5e4e8dc8eac9d_7fb3fefbb643a58980a2@macdeMacBook-Pro-2.local.mail (3490.5ms)
+Date: Thu, 20 Feb 2020 08:46:48 -0500
+From: postmaster.iedb@gmail.com
+To: nolanrgiles@gmail.com
+Message-ID: <5e4e8dc8eac9d_7fb3fefbb643a58980a2@macdeMacBook-Pro-2.local.mail>
+Subject: Welcome Nolan
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Hi Nolan</h1>
+<p>Welcome to the Pick Auto Parts</p>
+<p>We hope to start helping you with your shopping</p>
+<br>
+<h5>Henry Dozie</h5>
+  </body>
+</html>
+
+Completed 201 Created in 12432ms (Views: 0.7ms | ActiveRecord: 1819.8ms | Allocations: 40703)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:47:06 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.5ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.5ms | Allocations: 4519)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:50:18 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.4ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:50:31 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.9ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:50:40 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:50:41 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.5ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.5ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:50:43 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.3ms | Allocations: 4521)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:50:48 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:50:52 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:53:41 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.4ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.4ms | Allocations: 4518)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:54:07 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.2ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.2ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:54:48 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:55:37 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.5ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.5ms | Allocations: 4517)
+
+
+Started GET "/autoparts" for ::1 at 2020-02-20 08:56:18 -0500
+Processing by PublicController#index as HTML
+  [1m[36mAutopart Load (0.3ms)[0m  [1m[34mSELECT "autoparts".* FROM "autoparts"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.3ms | Allocations: 4517)
+
+

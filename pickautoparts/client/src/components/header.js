@@ -43,6 +43,9 @@ class Header extends Component {
             <div className="logo"> <img src={logo} alt="loading.." className="logoImg"/></div>
           </Link>
           <div className="headRegion">
+            <div className="brandName">
+              {/* <img src={logo} alt="loading"/> */}
+            </div>
             <div className="loginAndSignUp">
               <div className="login">
                 {this.props.currentUser ? (
