@@ -11,7 +11,7 @@ class PasswordsController < ApplicationController
       UserMailer.reset_email(user).deliver
       render json: {status: 'ok'}, status: :ok
     else
-      render json: {error: [’Email address not found. Please check and try again.’]}, status: :not_found
+      render json: {error: 'Email address not found. Please check and try again.'}, status: :not_found
     end
   end
 
