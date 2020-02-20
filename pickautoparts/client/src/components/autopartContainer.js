@@ -16,10 +16,9 @@ class AutopartContainer extends Component {
     };
   }
 
-  updateCart = (e) => {
-    e.preventDefault()
-
-  }
+  updateCart = e => {
+    e.preventDefault();
+  };
 
   componentDidMount() {
     this.readAllAutoparts();
@@ -155,7 +154,7 @@ class AutopartContainer extends Component {
                     <span>
                       <h4>$ {autopart.price}</h4>
                     </span>
-                    <button onClick={e => this.props.handleOrder(e, autopart)}>
+                    <button onClick={e => this.props.handleClick(e, autopart)}>
                       <h3>Add to Cart</h3>
                     </button>
                   </div>
@@ -165,6 +164,25 @@ class AutopartContainer extends Component {
         </div>
         <div className="rightSideBar">
           <AutoplaySlider />
+          {this.props.currentUser ? (
+            <div className="rightSideBarMap">
+              <iframe
+                id="googleMaps"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1511.2591469244708!2d-73.987004!3d40.7506239!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa89dbb19d96569cc!2sKeens%20Steakhouse!5e0!3m2!1sen!2sus!4v1580232117513!5m2!1sen!2sus"
+                frameborder="0"
+                allowfullscreen=""
+              ></iframe>
+            </div>
+          ) : (
+            <div className="rightSideBarMap">
+              <iframe
+                id="googleMaps"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1511.2591469244708!2d-73.987004!3d40.7506239!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa89dbb19d96569cc!2sKeens%20Steakhouse!5e0!3m2!1sen!2sus!4v1580232117513!5m2!1sen!2sus"
+                frameborder="0"
+                allowfullscreen=""
+              ></iframe>
+            </div>
+          )}
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ResetPassword from "./components/resetPassword";
 import ForgotPassword from "./components/forgotPassword";
-import { registerUser, loginUser } from "./services/api_helper";
+import { registerUser, loginUser, verifyUser } from "./services/api_helper";
 // import logo from "./logo.svg";
 import Header from "./components/header";
 import { Route, withRouter } from "react-router-dom";
@@ -27,23 +27,42 @@ class App extends Component {
     };
   }
 
-  // handleOrder = (e, autopart) => {
-  //   e.preventDefault();
-  //   let cartFlag = true;
-  //   let newCart = this.state.cart;
-  //   for (let i = 0; i < newCart.length; i++) {
-  //     if (newCart[i].id === autoparts.id) {
-  //       cartFlag = false;
-  //       break;
-  //     }
-  //   }
-  //   if (cartFlag) {
-  //     newCart.push(autoparts);
-  //   }
-  //   this.setState({
-  //     cart: newCart
-  //   });
-  // };
+  addToCart = (e, autoparts) => {
+    verifyUser();
+    e.preventDefault();
+    let cartFlag = true;
+    let newCartList = this.state.cart;
+    for (let i = 0; i < newCartList.length; i++) {
+      if (newCartList[i].id === autoparts.id) {
+        cartFlag = false;
+        break;
+      }
+    }
+    if (cartFlag) {
+      newCartList.push(autoparts);
+    }
+    this.setState({
+      cart: newCartList
+    });
+    localStorage.setItem('cart', this.state.cart)
+  };
+
+  removeFromCart = (e, autoparts) => {
+    verifyUser();
+    e.preventDefault();
+    
+
+    const newList = this.state.cart.filter(part => part.id !== autoparts.id);
+    this.setState({
+      cart: newList
+    });
+  };
+
+  componentDidMount() {
+    const cart = localStorage.getItem('cart')
+    console.log(cart[0]);
+    
+  }
 
   handleRegister = async (e, registerData) => {
     e.preventDefault();
@@ -55,6 +74,7 @@ class App extends Component {
       this.setState({ errorText: currentUser.errorMessage });
     }
   };
+
 
   handleLogin = async (e, loginData) => {
     e.preventDefault();
@@ -80,9 +100,13 @@ class App extends Component {
         <Header
           currentUser={this.state.currentUser}
           handleLogout={this.handleLogout}
+          cart={this.state.cart}
         />
 
-        <Route path="/home" render={() => <AutopartContainer />} />
+        <Route
+          path="/home"
+          render={() => <AutopartContainer handleClick={this.addToCart} />}
+        />
         <Route
           path="/login"
           render={() => (
@@ -109,13 +133,17 @@ class App extends Component {
           render={props => <ResetPassword token={props.match.params.token} />}
         />
         <Route path="/orders" render={() => <OrderContainer />} />
-        <Route path="/cart" render={() => <Cart />} />
+        <Route
+          path="/cart"
+          render={() => (
+            <Cart cart={this.state.cart} handleRemove={this.removeFromCart} />
+          )}
+        />
         <Route
           path="/autoparts/single/:id"
           render={props => (
             <SingleAutopart
               autopartId={props.match.params.id}
-              // autoparts={this.state.autoparts}
             />
           )}
         />

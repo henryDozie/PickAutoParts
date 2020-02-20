@@ -18,7 +18,7 @@ class Horizontal extends Component {
       value: value
     })
   };
-
+  
   handleChangeComplete = () => {
     console.log('Change event completed')
   };

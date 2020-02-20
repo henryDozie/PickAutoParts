@@ -21,12 +21,6 @@ export default class SingleAutopart extends Component {
     this.setcurrentPart();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.autopartId !== this.props.autopartId) {
-  //     console.log(prevProps);
-  //     this.setcurrentPart();
-  //   }
-  // }
 
   render() {
     console.log(this.props);

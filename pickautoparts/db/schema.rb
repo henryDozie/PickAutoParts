@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2020_02_13_223320) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "autoparts", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "img_url"
-    t.integer "order_id", null: false
+    t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "price"
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_223320) do
   create_table "reviews", force: :cascade do |t|
     t.string "review"
     t.integer "rating"
-    t.integer "autopart_id", null: false
+    t.bigint "autopart_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "created_by"

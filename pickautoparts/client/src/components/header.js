@@ -13,7 +13,7 @@ class Header extends Component {
       currentUser: false,
       errorText: "",
       loggedIn: false,
-      count: 0
+
     };
   }
   componentDidMount() {
@@ -52,7 +52,7 @@ class Header extends Component {
       <div>
         <header>
           <Link to="/home">
-            <div className="logo"></div>
+            <div className="logo"> <img src="../images/logo.png"/></div>
           </Link>
           <div className="headRegion">
             <div className="loginAndSignUp">
@@ -94,7 +94,7 @@ class Header extends Component {
                 <Link to="/cart">
                   <i className="fas fa-shopping-cart fa-3x"></i>
                 </Link>
-                <h3 className="cart">{this.state.count}</h3>
+                <h3 className="cartNum">{this.props.cart.length}</h3>
               </div>
             </div>
           </div>
